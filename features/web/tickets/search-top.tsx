@@ -48,7 +48,7 @@ const categories = [
 ];
 export default function SearchTicketsTop() {
   return (
-    <section className="container top-0 z-10 bg-background pt-8 pb-4 lg:sticky dark:bg-black">
+    <section className="container top-6 z-10 bg-background pt-8 pb-4 lg:sticky dark:bg-black">
       <div className="flex w-full items-center gap-4">
         <Form
           action={"/tickets"}

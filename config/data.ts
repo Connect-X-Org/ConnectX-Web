@@ -465,7 +465,7 @@ export const places: TPlace[] = [
   {
     id: 5,
     src: "/places/nyanza.jpg",
-    place: "Musanze",
+    place: "Nyanza",
     title: "Nyanza",
     href: "/",
     description:

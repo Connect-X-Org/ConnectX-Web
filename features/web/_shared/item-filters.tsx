@@ -29,8 +29,8 @@ export default function ItemFilters({ itemType }: { itemType: string }) {
   }
 
   return (
-    <section className="container top-0 z-10 bg-background py-8 lg:sticky">
-      <div className="flex w-full items-center justify-between gap-4">
+    <>
+      <div className="container flex w-full items-center justify-between gap-4 pt-6">
         <Form
           action={`/${itemType}`}
           className="relative w-full max-w-xl 2xl:max-w-3xl dark:bg-black"
@@ -62,7 +62,7 @@ export default function ItemFilters({ itemType }: { itemType: string }) {
         </Button>
       </div>
       <ScrollArea className="mt-10 w-[95vw]">
-        <div className="flex gap-2 pb-4">
+        <div className="container flex gap-2 pb-4">
           {categories.map((category) => {
             const isActive = activeCategory === category.label;
             return (
@@ -82,6 +82,6 @@ export default function ItemFilters({ itemType }: { itemType: string }) {
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
-    </section>
+    </>
   );
 }
