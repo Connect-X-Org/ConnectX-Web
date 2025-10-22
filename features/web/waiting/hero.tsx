@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function WaitingListHero() {
   return (
     <div className="mx-auto flex max-w-lg flex-col items-center justify-center gap-10 text-center">
-      <Link href="/">
+      <Link className="rounded-xl p-1 dark:bg-white" href="/">
         <Image
           alt="logo image"
           className="rounded-lg"
