@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import FilterCategories from "@/features/web/_shared/filter-categories";
 import ItemFilters from "@/features/web/_shared/item-filters";
 import HousingLanding from "@/features/web/housing/landing";
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export default function HousingPage() {
       <Suspense fallback={<Skeleton className="h-10 w-full" />}>
         <ItemFilters itemType="housing" />
       </Suspense>
+      <FilterCategories itemType="housing" />
       <HousingLanding />
     </main>
   );

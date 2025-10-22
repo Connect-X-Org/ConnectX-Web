@@ -7,8 +7,11 @@ import { JobListMobile } from "./job-list-mobile";
 export default function SearchJobsTop() {
   return (
     <section className="container top-6 z-10 bg-background pt-8 pb-4 lg:sticky">
-      <div className="flex w-full items-center gap-4">
-        <Form action={"/jobs"} className="relative w-full dark:bg-black">
+      <div className="flex w-full items-center justify-between gap-4">
+        <Form
+          action={"/jobs"}
+          className="relative w-full max-w-xl 2xl:max-w-3xl dark:bg-black"
+        >
           <Input
             className="peer min-h-10 pe-9 md:min-h-10 md:ps-9"
             name="search"
