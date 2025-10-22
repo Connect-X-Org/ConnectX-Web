@@ -13,6 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { dashboardNavs } from "@/config/dashboard";
+import { siteConfig } from "@/config/site";
 import { NavMain } from "@/features/dashboard/layout/nav-main";
 import { NavSecondary } from "@/features/dashboard/layout/nav-secondary";
 import { NavUser } from "@/features/dashboard/layout/nav-user";
@@ -30,7 +31,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="/">
                 <Image alt="logo" height={20} src="/logo.png" width={20} />
-                <span className="font-semibold text-base">Rwanda Connect</span>
+                <span className="font-semibold text-xl capitalize">
+                  {siteConfig.name}
+                </span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

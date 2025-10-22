@@ -58,9 +58,23 @@ export default function MainNav({ className }: React.ComponentProps<"nav">) {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className="cursor-pointer text-lg dark:data-[state=open]:text-brand dark:hover:bg-transparent dark:hover:text-brand dark:data-[state=open]:hover:bg-transparent"
+            className={cn(
+              "cursor-pointer text-lg dark:data-[state=open]:text-brand dark:hover:bg-transparent dark:hover:text-brand dark:data-[state=open]:hover:bg-transparent",
+              pathname === "/map" && "text-brand"
+            )}
           >
             <Link href="/map">Map</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            asChild
+            className={cn(
+              "cursor-pointer text-lg dark:data-[state=open]:text-brand dark:hover:bg-transparent dark:hover:text-brand dark:data-[state=open]:hover:bg-transparent",
+              pathname === "/waiting-list" && "text-brand"
+            )}
+          >
+            <Link href="/waiting-list">Waiting List</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

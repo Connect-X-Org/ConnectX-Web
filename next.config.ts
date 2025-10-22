@@ -16,12 +16,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "burst.shopifycdn.com",
-      //   port: "",
-      //   pathname: "/**",
-      // },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

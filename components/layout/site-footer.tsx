@@ -1,6 +1,7 @@
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
 import { footerLinks } from "@/config/data";
+import { siteConfig } from "@/config/site";
 import { TextLoop } from "../custom/text-loop";
 import SubscribeForm from "./subscribe-form";
 import { ThemeSwitcher } from "./theme-switcher";
@@ -65,7 +66,7 @@ export default function SiteFooter() {
                 interval={3}
               >
                 <p className="text-balance text-muted-foreground text-sm leading-5">
-                  © {new Date().getFullYear()} The Gateway.
+                  © {new Date().getFullYear()} {siteConfig.name}.
                 </p>
                 <span className="text-balance text-muted-foreground text-sm leading-5">
                   Built By{" "}

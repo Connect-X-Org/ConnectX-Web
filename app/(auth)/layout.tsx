@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import Image from "next/image";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 import cImg from "@/public/images/d.avif";
 import logo from "@/public/logo.png";
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -13,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="flex size-8 items-center justify-center rounded-md bg-brand-500 text-black">
               <Image alt="logo" height={24} src={logo} width={24} />
             </div>
-            Rwanda Connect
+            <span className="font-semibold text-xl">{siteConfig.name}</span>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">

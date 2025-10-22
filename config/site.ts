@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "The Gateway",
+  name: "ConnectX",
   url: "https://gateway-rw.vercel.app/", // Replace with production URL
   ogImage: "https://gateway-rw.vercel.app/opengraph-image.png",
   description:
