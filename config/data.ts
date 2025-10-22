@@ -199,7 +199,6 @@ export const adminNavItems: TnavItem[] = [
   {
     label: "Services",
     link: "/services",
-    comingSoon: true,
   },
   {
     label: "Company",
