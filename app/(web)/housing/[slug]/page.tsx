@@ -120,7 +120,7 @@ export default async function Page({
             <HouseLocation place={house.place} />
           </div>
         </div>
-        <div className="sticky top-8 col-span-12 block h-fit md:col-span-4 2xl:col-span-3">
+        <div className="sticky top-14 col-span-12 block h-fit md:col-span-4 2xl:col-span-3">
           <div className="flex flex-col gap-4">
             <Card className="hidden lg:flex">
               <CardHeader>
