@@ -1107,7 +1107,7 @@ const eventImages = [
 ];
 export const events: TEvent[] = [
   {
-    src: "/images/tiq-1.jpeg",
+    src: "/images/tiq-1.avif",
     otherImages: eventImages,
     place: ["Nyarugenge", "Kigali"],
     title: "Kigali Cultural Festival",
@@ -1147,7 +1147,7 @@ export const events: TEvent[] = [
       "Discover Rwanda’s world-class coffee industry with tastings, workshops, and networking.",
   },
   {
-    src: "/images/tiq-1.jpeg",
+    src: "/images/tiq-1.avif",
     otherImages: eventImages,
     place: ["Musanze", "Rwanda"],
     title: "Traditional Dance Night",
@@ -1187,7 +1187,7 @@ export const events: TEvent[] = [
       "A gathering of innovators and entrepreneurs shaping the future of technology in Africa.",
   },
   {
-    src: "/images/tiq-1.jpeg",
+    src: "/images/tiq-1.avif",
     otherImages: eventImages,
     place: ["Musanze", "Rwanda"],
     title: "Wildlife Photography Workshop",
