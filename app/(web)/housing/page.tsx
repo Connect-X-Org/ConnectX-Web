@@ -13,7 +13,9 @@ export default function HousingPage() {
       <Suspense fallback={<Skeleton className="h-10 w-full" />}>
         <ItemFilters itemType="housing" />
       </Suspense>
-      <FilterCategories itemType="housing" />
+      <Suspense fallback={<Skeleton className="h-10 w-full" />}>
+        <FilterCategories itemType="housing" />
+      </Suspense>
       <HousingLanding />
     </main>
   );

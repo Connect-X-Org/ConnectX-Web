@@ -11,11 +11,11 @@ export default function RestaurantsPage() {
   return (
     <main className="relative">
       <Suspense fallback={<Skeleton className="h-10 w-full" />}>
-        <div className="relative">
-          <ItemFilters itemType="restaurants" />
-        </div>
+        <ItemFilters itemType="restaurants" />
       </Suspense>
-      <FilterCategories itemType="restaurants" />
+      <Suspense fallback={<Skeleton className="h-10 w-full" />}>
+        <FilterCategories itemType="restaurants" />
+      </Suspense>
       <RestaurantsLanding />
     </main>
   );
