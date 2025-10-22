@@ -3,11 +3,11 @@ import { ArrowRightIcon, SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 export default function SearchTop() {
   return (
-    <div className="ml-auto hidden items-center gap-x-4 md:flex lg:gap-x-6">
-      <div className="relative">
+    <div className="mx-auto hidden w-full max-w-xl items-center gap-x-4 rounded-full md:flex lg:gap-x-6">
+      <div className="relative w-full">
         <Input
-          className="peer min-h-10 ps-9 lg:min-w-xs lg:pe-9"
-          placeholder="Search..."
+          className="peer min-h-10 rounded-full border-0 bg-muted ps-9 lg:min-w-xs lg:pe-9 dark:border"
+          placeholder="Search places, services or products..."
           type="search"
         />
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">

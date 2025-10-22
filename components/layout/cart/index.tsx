@@ -18,7 +18,11 @@ export function Cart({ isAddToCart = false }: { isAddToCart?: boolean }) {
         {isAddToCart ? (
           <Button className="w-fit">Add to Cart</Button>
         ) : (
-          <Button className="group" size={"icon"} variant={"outline"}>
+          <Button
+            className="group rounded-full"
+            size={"icon"}
+            variant={"outline"}
+          >
             <ShoppingCartIcon className="transition-all ease-in-out group-hover:scale-110" />
           </Button>
         )}

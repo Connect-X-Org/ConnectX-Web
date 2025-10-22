@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 export default function ChatBtn() {
   return (
-    <div className="-translate-x-1/2 fixed bottom-6 left-1/2 z-30">
+    <div className="-translate-x-1/2 fixed bottom-4 left-1/2 z-30">
       <Button
         asChild
         className="group flex w-36 items-center gap-4 rounded-2xl px-6 text-muted-foreground hover:text-primary/90"

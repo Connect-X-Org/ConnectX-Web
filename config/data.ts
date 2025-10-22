@@ -59,6 +59,7 @@ import type {
   TEvent,
   THouse,
   Tjob,
+  TnavItem,
   TPlace,
   TRestaurant,
 } from "@/types";
@@ -189,7 +190,27 @@ export const navItems = [
     description: "Access our help center, FAQs, and customer support.",
   },
 ];
+export const adminNavItems: TnavItem[] = [
+  {
+    label: "Explore",
+    link: "/",
+  },
 
+  {
+    label: "Services",
+    link: "/services",
+    comingSoon: true,
+  },
+  {
+    label: "Company",
+    link: "/company",
+    comingSoon: true,
+  },
+  {
+    label: "Map",
+    link: "/map",
+  },
+];
 export const footerLinks = [
   {
     title: "Newsroom",

@@ -3,8 +3,8 @@ export const dynamic = "force-dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import cImg from "@/public/images/d.avif";
-import logo from "@/public/logo.png";
+import cImg from "@/public/gradients_3.png";
+import logo from "@/public/icon.png";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
@@ -21,10 +21,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="w-full max-w-xs px-2 md:px-0">{children}</div>
         </div>
       </div>
-      <div className="relative hidden overflow-hidden bg-muted lg:block">
+      <div className="relative hidden overflow-hidden rounded-l-2xl bg-muted lg:block">
         <Image
           alt="Image"
-          className="absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-in-out hover:scale-105 dark:grayscale"
+          className="absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-in-out hover:scale-105"
           placeholder="blur"
           src={cImg}
         />

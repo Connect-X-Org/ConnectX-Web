@@ -94,3 +94,9 @@ export type Tjob = {
   applyType: string;
   posted: string;
 };
+
+export type TnavItem = {
+  label: string;
+  link: string;
+  comingSoon?: boolean | undefined;
+};
