@@ -14,7 +14,7 @@ export default function CompanyPage() {
           return (
             <Link
               className={cn(
-                "group col-span-1 flex aspect-video min-h-[150px] w-full items-center justify-center rounded-md bg-background shadow-2xs transition-all duration-300 ease-in-out hover:bg-white/90 hover:text-black"
+                "group col-span-1 flex aspect-video min-h-[150px] w-full items-center justify-center rounded-md bg-muted shadow-2xs transition-all duration-300 ease-in-out hover:bg-black hover:text-white dark:hover:bg-white/90 dark:hover:text-black"
               )}
               href={item.href}
               key={item.name}

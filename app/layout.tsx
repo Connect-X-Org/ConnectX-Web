@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { fontVariables } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
-import { BreakpointIndicator } from "@/components/custom/breakdown";
-import { Toaster } from "@/components/ui/sonner";
+
+import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -58,17 +56,7 @@ export default function RootLayout({
       <body
         className={cn("relative font-source-sans antialiased", fontVariables)}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-          enableSystem
-        >
-          {children}
-          <BreakpointIndicator className="absolute" />
-          <Toaster closeButton />
-          <Analytics />
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
