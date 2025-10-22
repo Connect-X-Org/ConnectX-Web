@@ -428,7 +428,7 @@ export const houses: THouse[] = [
 export const places: TPlace[] = [
   {
     id: 1,
-    src: "https://cdn.pixabay.com/video/2019/11/22/29343-375445331_large.mp4",
+    src: "/places/volcanoes.jpg",
     place: "Musanze – Northern",
     title: "Volcanoes National Park",
     href: "/",
@@ -437,7 +437,7 @@ export const places: TPlace[] = [
   },
   {
     id: 2,
-    src: "https://cdn.pixabay.com/video/2024/05/12/211641_large.mp4",
+    src: "/places/park.jpg",
     place: "Nyamagabe – Southern",
     title: "Nyungwe Forest National Park",
     href: "/",
@@ -446,7 +446,7 @@ export const places: TPlace[] = [
   },
   {
     id: 3,
-    src: "https://cdn.pixabay.com/video/2021/04/29/72566-543910236_large.mp4",
+    src: "/places/kivu.jpg",
     place: "Rubavu – Western",
     title: "Lake Kivu",
     href: "/",
@@ -455,7 +455,7 @@ export const places: TPlace[] = [
   },
   {
     id: 4,
-    src: "https://cdn.pixabay.com/video/2025/08/11/296795_large.mp4",
+    src: "/places/nyungwe.jpg",
     place: "Kayonza – Eastern",
     title: "Akagera National Park",
     href: "/",
@@ -464,21 +464,21 @@ export const places: TPlace[] = [
   },
   {
     id: 5,
-    src: "https://cdn.pixabay.com/video/2022/08/22/128698-742053479_large.mp4",
+    src: "/places/nyanza.jpg",
     place: "Musanze",
-    title: "Virunga National Park",
+    title: "Nyanza",
     href: "/",
     description:
-      "Explore Africa’s most biodiverse park, where dramatic landscapes of volcanoes and lush forests shelter rare species like mountain gorillas, golden monkeys, and vibrant birdlife.",
+      "Home to the King's Palace - a reconstruction of the traditional royal residence, a beautifully-crafted thatched dwelling shaped like a beehive.",
   },
   {
     id: 6,
-    src: "https://cdn.pixabay.com/video/2024/03/22/205193-926528071_large.mp4",
-    place: "Kigali – Remera",
-    title: "Amahoro National Stadium",
+    src: "/places/rubavu.jpg",
+    place: "Kivu",
+    title: "Rubavu",
     href: "/",
     description:
-      "Experience the beating heart of Rwanda’s sporting and cultural life at Amahoro Stadium, a symbol of unity and celebration where history, passion, and community come alive.",
+      "A waterfront town on the shores of Lake Kivu, with red sandy beaches, warm clean water and an easygoing tropical character.",
   },
 ];
 

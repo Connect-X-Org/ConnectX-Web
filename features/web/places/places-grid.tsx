@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { VideoHoverCard } from "@/components/custom/video-hover-card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/utils";
 import type { TPlace } from "@/types";
@@ -33,7 +33,13 @@ export default function PlacesGrid({
         >
           <div className="relative overflow-hidden">
             <AspectRatio className="rounded-none bg-muted" ratio={16 / 9}>
-              <VideoHoverCard className="rounded-none" src={place.src} />
+              <Image
+                alt={place.title}
+                className="h-full w-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                src={place.src}
+              />
             </AspectRatio>
           </div>
 
