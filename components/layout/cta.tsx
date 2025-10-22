@@ -1,18 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
-import ctaBg from "@/public/images/conv.png";
+import { StripedPattern } from "../custom/striped-pattern";
 import { Button } from "../ui/button";
 export default function Cta() {
   return (
     <div className="relative flex h-full w-full items-center justify-center rounded-md p-4 md:p-6 lg:p-10">
-      {/* bg image */}
-      <Image
-        alt="Cta"
-        className="absolute inset-0 h-full w-full object-cover grayscale"
-        height={1080}
-        src={ctaBg}
-        width={1920}
-      />
+      <StripedPattern className="absolute inset-0 h-full w-full stroke-[0.3] [stroke-dasharray:8,4]" />
       <div className="container relative z-10 rounded-xl bg-background py-16 lg:py-20 dark:bg-black">
         <div className="flex flex-col gap-10">
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
