@@ -1,7 +1,8 @@
 "use client";
 import Blogs from "@/features/web/landing/blogs";
 import Faqs from "@/features/web/landing/faq";
-import Hero from "@/features/web/landing/hero";
+// import Hero from "@/features/web/landing/hero";
+import HeroCarousel from "@/features/web/landing/hero-carousel";
 import Houses from "@/features/web/landing/houses";
 import IntroContent from "@/features/web/landing/intro";
 import ParallaxHome from "@/features/web/landing/parallax";
@@ -10,10 +11,10 @@ import Places from "@/features/web/landing/places";
 import Restaurants from "@/features/web/landing/restaurants";
 import Testimonilas from "@/features/web/landing/testimonilas";
 export default function Home() {
- 
   return (
     <>
-      <Hero />
+      <HeroCarousel />
+      {/* <Hero /> */}
       <PartnersLogoCloud />
       <IntroContent />
       <Places />
