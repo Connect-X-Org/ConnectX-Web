@@ -27,12 +27,15 @@ import {
   LandmarkIcon,
   LandPlot,
   LifeBuoy,
+  ListIcon,
   MapPin,
   MapPinIcon,
   Martini,
+  Mic2Icon,
   Monitor,
   Mountain,
   Newspaper,
+  PhoneIcon,
   Pizza,
   Radio,
   Salad,
@@ -142,19 +145,34 @@ export const company = [
     icon: BadgeCheck, // verified roles / jobs
   },
   {
-    name: "Newsroom",
-    href: "/company/newsroom",
+    name: "Blogs",
+    href: "/company/blogs",
     icon: Newspaper, // news
   },
   {
-    name: "Partnerships",
+    name: "Partners",
     href: "/company/partnerships",
     icon: Handshake, // collaboration
+  },
+  {
+    name: "Press",
+    href: "/company/press",
+    icon: Mic2Icon, // news
   },
   {
     name: "Privacy Policy",
     href: "/company/privacy",
     icon: ShieldCheck, // protection/security
+  },
+  {
+    name: "Waiting List",
+    href: "/waiting-list",
+    icon: ListIcon, // protection/security
+  },
+  {
+    name: "Contact Us",
+    href: "/company/contact",
+    icon: PhoneIcon, // protection/security
   },
 ];
 
@@ -203,7 +221,7 @@ export const adminNavItems: TnavItem[] = [
   {
     label: "Company",
     link: "/company",
-    comingSoon: true,
+    // comingSoon: true,
   },
   {
     label: "Map",
@@ -224,13 +242,15 @@ export const footerLinks = [
     links: [
       { name: "About Us", href: "/", external: false },
       { name: "Careers", href: "/", external: false },
+      { name: "Blogs", href: "/", external: false },
       { name: "Press", href: "/", external: false },
-      { name: "Contact", href: "/", external: false },
+      { name: "Contact Us", href: "/", external: false },
     ],
   },
   {
     title: "For Business",
     links: [
+      { name: "Create business page", href: "/", external: false },
       { name: "Advertise with Us", href: "/", external: false },
       { name: "Media Kit", href: "/", external: false },
       { name: "Partner with Us", href: "/", external: false },
@@ -272,12 +292,17 @@ export const footerLinks = [
     ],
   },
   {
-    title: "Sections",
+    title: "Services",
     links: [
-      { name: "Politics", href: "/", external: false },
-      { name: "Business", href: "/", external: false },
-      { name: "Technology", href: "/", external: false },
-      { name: "Health", href: "/", external: false },
+      { name: "Government Services", href: "/", external: false },
+      { name: "Restaurant", href: "/", external: false },
+      { name: "Housing", href: "/", external: false },
+      { name: "Tourism", href: "/", external: false },
+      { name: "Health care", href: "/", external: false },
+      { name: "Rwanda Media", href: "/", external: false },
+      { name: "Shopping", href: "/", external: false },
+      { name: "Tickets", href: "/", external: false },
+      { name: "Jobs", href: "/", external: false },
     ],
   },
   {

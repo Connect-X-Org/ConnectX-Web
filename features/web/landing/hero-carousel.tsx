@@ -1,3 +1,5 @@
+"use client";
+import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -15,10 +17,16 @@ export default function HeroCarousel() {
           loop: true,
           dragFree: true,
         }}
+        plugins={[
+          Autoplay({
+            delay: 7000,
+            stopOnMouseEnter: true,
+          }),
+        ]}
       >
         <CarouselContent>
           <CarouselItem className="overflow-x-hidden rounded-2xl">
-            <div className="relative flex h-[400px] overflow-hidden rounded-2xl bg-muted/80 p-6">
+            <div className="relative flex h-[400px] overflow-hidden rounded-2xl bg-muted/80 p-6 2xl:h-[500px]">
               <video
                 autoPlay
                 className="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover"
@@ -33,7 +41,7 @@ export default function HeroCarousel() {
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 z-0 bg-black/40" />
-              <div className="relative z-10 mt-auto flex flex-col gap-4">
+              <div className="relative z-10 mt-auto flex flex-col gap-4 text-white">
                 <h1 className="font-semibold text-3xl lg:text-5xl">
                   What are you feeling like to eat today?
                 </h1>
@@ -46,7 +54,7 @@ export default function HeroCarousel() {
             </div>
           </CarouselItem>
           <CarouselItem className="overflow-x-hidden rounded-2xl">
-            <div className="relative flex h-[400px] overflow-hidden rounded-2xl bg-muted/80 p-6">
+            <div className="relative flex h-[400px] overflow-hidden rounded-2xl bg-muted/80 p-6 2xl:h-[500px]">
               <video
                 autoPlay
                 className="absolute inset-0 z-0 h-full w-full rounded-2xl object-cover"
@@ -61,7 +69,7 @@ export default function HeroCarousel() {
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 z-0 bg-black/40" />
-              <div className="relative z-10 mt-auto flex flex-col gap-4">
+              <div className="relative z-10 mt-auto flex flex-col gap-4 text-white">
                 <h1 className="font-semibold text-3xl lg:text-5xl">
                   Where do you want to stay today?
                 </h1>
