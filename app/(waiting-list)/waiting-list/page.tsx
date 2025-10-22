@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Faqs from "@/features/web/landing/faq";
 import CountDown from "@/features/web/waiting/count-down";
+import WaitingFooter from "@/features/web/waiting/footer";
 import WaitingListForm from "@/features/web/waiting/form";
 import WaitingListHero from "@/features/web/waiting/hero";
 import OtherWhoJoined from "@/features/web/waiting/others";
@@ -16,6 +17,7 @@ export default function WaitingListPage() {
       <OtherWhoJoined />
       <CountDown />
       <Faqs />
+      <WaitingFooter />
     </section>
   );
 }

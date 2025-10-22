@@ -8,11 +8,8 @@ import { ThemeSwitcher } from "./theme-switcher";
 
 export default function SiteFooter() {
   return (
-    <footer
-      className="relative h-full lg:h-[800px]"
-      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
-    >
-      <div className="bottom-0 h-full w-full border-t bg-background lg:fixed dark:bg-black">
+    <footer>
+      <div className="h-full w-full border-t bg-background dark:bg-black">
         <div className="sm:px-6 lg:px-2">
           <div className="container flex flex-col items-center gap-2 py-8 pb-20 md:py-16 lg:py-20 xl:gap-4">
             <div className="grid w-full grid-cols-2 gap-6 gap-y-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-y-16">

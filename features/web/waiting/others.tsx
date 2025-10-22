@@ -6,15 +6,6 @@ const avatars = [
     profileUrl: "https://github.com/dillionverma",
   },
   {
-    imageUrl: "https://avatars.githubusercontent.com/u/20110627",
-    profileUrl: "https://github.com/tomonarifeehan",
-  },
-
-  {
-    imageUrl: "https://avatars.githubusercontent.com/u/59228569",
-    profileUrl: "https://github.com/safethecode",
-  },
-  {
     imageUrl: "https://avatars.githubusercontent.com/u/59442788",
     profileUrl: "https://github.com/sanjay-mali",
   },
@@ -28,7 +19,9 @@ export default function OtherWhoJoined() {
     <div className="mx-auto max-w-xl pb-10">
       <div className="flex items-center justify-center gap-4">
         <AvatarCircles avatarUrls={avatars} numPeople={99} />
-        <p>Join +1,00 others on the waitlist</p>
+        <p className="text-muted-foreground">
+          Join 1,00 + others on the waitlist
+        </p>
       </div>
     </div>
   );

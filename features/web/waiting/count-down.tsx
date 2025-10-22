@@ -1,4 +1,5 @@
 "use client";
+import { CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const TimeBlock = ({ value, label }: { value: number; label: string }) => (
@@ -47,12 +48,16 @@ export default function CountDown() {
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-4xl py-6">
+    <div className="mx-auto w-full max-w-2xl py-6">
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         <TimeBlock label="Days" value={timeLeft.days} />
         <TimeBlock label="Hours" value={timeLeft.hours} />
         <TimeBlock label="Minutes" value={timeLeft.minutes} />
         <TimeBlock label="Seconds" value={timeLeft.seconds} />
+      </div>
+      <div className="flex items-center justify-center gap-2 pt-6">
+        <CalendarIcon className="size-4 text-muted-foreground" />
+        <p className="font-medium uppercase">left until full release</p>
       </div>
     </div>
   );
