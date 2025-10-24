@@ -1,10 +1,10 @@
-/** biome-ignore-all lint/correctness/noUnusedVariables: <explanation> */
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// import { subscribe } from "@/app/actions/subscribe.action";
+import { subscribe } from "@/server/subscribe.action";
 
 export const SubFormSchema = z.object({
   email: z
@@ -39,8 +39,34 @@ export default function SubscribeForm() {
     },
   });
 
-  // biome-ignore lint/suspicious/noEmptyBlockStatements: <explanation>
-  const onSubmit = () => {};
+  const onSubmit = async (data: TSubFormSchema) => {
+    setSubmitting(true);
+
+    const createPromise = subscribe(data);
+
+    toast.promise(createPromise, {
+      loading: "Joining...",
+    });
+
+    try {
+      const result = await createPromise;
+
+      if (result?.success) {
+        setSubscribed(true); // trigger confirmation message
+        form.reset();
+
+        toast.success("Joined successfully", {
+          description: "You have been added to the waiting List.",
+        });
+      }
+    } catch {
+      toast.error("Failed to join. Please try again.", {
+        description: "There was an error joining the list.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (subscribed) {
     return (
