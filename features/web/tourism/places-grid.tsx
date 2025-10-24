@@ -28,7 +28,7 @@ export default function PlacesGrid({
             i === 0 && "lg:col-span-2",
             i === 1 && "lg:col-span-2"
           )}
-          href={place.href}
+          href={`/tourism/${place.slug}`}
           key={place.id}
         >
           <div className="relative overflow-hidden">

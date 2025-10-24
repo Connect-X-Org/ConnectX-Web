@@ -44,8 +44,8 @@ export default function Amenities() {
         <div className="min-w-[50%] flex-1">Essentials for a great trip</div>
       </div>
       <p className="@lg:mb-14 mb-5 text-muted-foreground">
-        At Wander, we've thought of every detail to create the travel experience
-        we always wanted.
+        At ConnectX, we've thought of every detail to create the travel
+        experience we always wanted.
       </p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {amenities.map((amenity) => (

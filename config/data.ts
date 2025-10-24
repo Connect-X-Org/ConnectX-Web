@@ -451,56 +451,62 @@ export const places: TPlace[] = [
   {
     id: 1,
     src: "/places/volcanoes.jpg",
+    otherImages: ["/houses/a.avif", "/houses/b.avif"],
     place: "Musanze – Northern",
     title: "Volcanoes National Park",
-    href: "/",
+    slug: "volcanoes-national-park",
     description:
       "Home to the majestic mountain gorillas, Volcanoes National Park offers breathtaking hikes through misty forests, volcanic peaks, and unforgettable encounters with Rwanda’s most iconic wildlife.",
   },
   {
     id: 2,
     src: "/places/park.jpg",
+    otherImages: ["/houses/a.avif", "/houses/b.avif"],
     place: "Nyamagabe – Southern",
     title: "Nyungwe Forest National Park",
-    href: "/",
+    slug: "nyungwe-forest-national-park",
     description:
       "Step into one of Africa’s oldest rainforests, rich with biodiversity, stunning waterfalls, and the world-famous canopy walk, where adventure meets tranquility above the treetops.",
   },
   {
     id: 3,
     src: "/places/kivu.jpg",
+    otherImages: ["/houses/a.avif", "/houses/b.avif"],
     place: "Rubavu – Western",
     title: "Lake Kivu",
-    href: "/",
+    slug: "lake-kivu",
     description:
       "Relax on the sandy shores of Lake Kivu, a scenic paradise with crystal-clear waters, stunning sunsets, and endless opportunities for boat rides, swimming, and lakeside dining.",
   },
   {
     id: 4,
     src: "/places/nyungwe.jpg",
+    otherImages: ["/houses/a.avif", "/houses/b.avif"],
     place: "Kayonza – Eastern",
     title: "Akagera National Park",
-    href: "/",
+    slug: "akagera-national-park",
     description:
       "Discover Rwanda’s safari gem, where rolling savannas host the Big Five — lions, elephants, buffalo, rhinos, and leopards — alongside hippos and countless bird species in a true African wilderness.",
   },
   {
     id: 5,
     src: "/places/nyanza.jpg",
+    otherImages: ["/houses/a.avif", "/houses/b.avif"],
     place: "Nyanza",
     title: "Nyanza",
-    href: "/",
+    slug: "nyanza",
     description:
-      "Home to the King's Palace - a reconstruction of the traditional royal residence, a beautifully-crafted thatched dwelling shaped like a beehive.",
+      "Home to the King's Palace — a reconstruction of the traditional royal residence, a beautifully crafted thatched dwelling shaped like a beehive.",
   },
   {
     id: 6,
     src: "/places/rubavu.jpg",
+    otherImages: ["/houses/a.avif", "/houses/b.avif"],
     place: "Kivu",
     title: "Rubavu",
-    href: "/",
+    slug: "rubavu",
     description:
-      "A waterfront town on the shores of Lake Kivu, with red sandy beaches, warm clean water and an easygoing tropical character.",
+      "A waterfront town on the shores of Lake Kivu, with red sandy beaches, warm clean water, and an easygoing tropical character.",
   },
 ];
 
@@ -966,6 +972,36 @@ export const restaurantPhotos = [
   "/restaurant/image-4.avif",
   "/restaurant/image-5.avif",
   "/restaurant/image-6.avif",
+];
+export const housingReviews = [
+  {
+    id: 1,
+    body: "Beautiful and well-maintained apartments. The neighborhood is quiet, and the management team is always responsive.",
+    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    name: "Eric N.",
+    location: "Kigali - Gasabo",
+  },
+  {
+    id: 2,
+    body: "I love my new home! The space is modern, clean, and perfectly located near shops and public transport.",
+    image: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    name: "Aline K.",
+    location: "Kigali - Kicukiro",
+  },
+  {
+    id: 3,
+    body: "Great value for money and excellent customer service. Moving in was easy, and everything was as described.",
+    image: "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg",
+    name: "Jean Claude M.",
+    location: "Kigali - Nyarutarama",
+  },
+  {
+    id: 4,
+    body: "The view from my apartment is stunning! It truly feels like home — safe, clean, and peaceful.",
+    image: "https://images.pexels.com/photos/3755512/pexels-photo-3755512.jpeg",
+    name: "Diane U.",
+    location: "Kigali - Kimironko",
+  },
 ];
 
 export const timetableWeek = [

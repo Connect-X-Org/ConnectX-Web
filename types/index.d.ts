@@ -71,9 +71,10 @@ export type TCategory = {
 export type TPlace = {
   id: number;
   src: string;
+  otherImages: string[];
   place: string;
   title: string;
-  href: string;
+  slug: string;
   description: string;
 };
 

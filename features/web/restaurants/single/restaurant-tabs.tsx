@@ -20,7 +20,7 @@ export default function RestaurantTabs({
   return (
     <div className="relative z-10">
       <Tabs className="flex w-full flex-col" defaultValue="overview">
-        <div className="container sticky top-14 z-10 flex h-fit w-full items-center justify-center bg-background p-4">
+        <div className="container sticky top-12 z-10 flex h-fit w-full items-center justify-center bg-background p-4">
           <Button
             asChild
             className="absolute left-4 w-fit hover:scale-105 lg:left-6 xl:left-8"
