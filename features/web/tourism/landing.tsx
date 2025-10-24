@@ -1,9 +1,9 @@
 import { places } from "@/config/data";
 import PlacesGrid from "./places-grid";
 
-export default function PlacesLanding() {
+export default function TourismLanding() {
   return (
-    <section className="container pb-16 lg:py-20 lg:pt-0">
+    <section className="container pb-16 lg:py-20 lg:pt-6">
       <div className="relative flex flex-col gap-6 lg:gap-12">
         <PlacesGrid places={places} />
       </div>

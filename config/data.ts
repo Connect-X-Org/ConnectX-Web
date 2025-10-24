@@ -21,6 +21,7 @@ import {
   Home,
   Hospital,
   House,
+  HouseIcon,
   IceCream2,
   Info,
   Landmark,
@@ -961,7 +962,8 @@ export const restaurantCategories: TCategory[] = [
   { label: "Healthy", icon: Apple },
 ];
 
-export const placeCategories = [
+export const tourismCategories = [
+  { label: "For you", icon: HouseIcon },
   { label: "Historical Sites", icon: Landmark },
   { label: "Museums", icon: Building },
   { label: "Parks", icon: Trees },

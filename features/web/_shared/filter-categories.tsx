@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   housingCategories,
-  placeCategories,
   restaurantCategories,
+  tourismCategories,
 } from "@/config/data";
 import type { TCategory } from "@/types";
-export default function FilterCategories({ itemType }: { itemType: string }) {
+export default function FilterCategories({
+  itemType,
+}: {
+  itemType: "housing" | "restaurants" | "tourism";
+}) {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category") || "For you";
   let categories: TCategory[] = [];
@@ -18,13 +22,13 @@ export default function FilterCategories({ itemType }: { itemType: string }) {
     categories = housingCategories;
   } else if (itemType === "restaurants") {
     categories = restaurantCategories;
-  } else if (itemType === "places") {
-    categories = placeCategories;
+  } else if (itemType === "tourism") {
+    categories = tourismCategories;
   }
   return (
     <div className="sticky top-10 z-10 h-fit w-full bg-background dark:bg-black">
-      <ScrollArea className="mt-10 w-[95vw]">
-        <div className="container flex gap-2 py-4">
+      <ScrollArea className="mx-auto mt-10 w-[95vw]">
+        <div className="flex gap-2 pt-4 pb-2">
           {categories.map((category) => {
             const isActive = activeCategory === category.label;
             return (
@@ -42,7 +46,7 @@ export default function FilterCategories({ itemType }: { itemType: string }) {
             );
           })}
         </div>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar className="hidden" orientation="horizontal" />
       </ScrollArea>
     </div>
   );

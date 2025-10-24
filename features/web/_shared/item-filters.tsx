@@ -13,7 +13,7 @@ export default function ItemFilters({ itemType }: { itemType: string }) {
     <div className="container flex w-full items-center justify-between gap-4 pt-6">
       <Form
         action={`/${itemType}`}
-        className="relative w-full max-w-xl 2xl:max-w-3xl dark:bg-black"
+        className="relative w-full max-w-1/2 2xl:max-w-3xl dark:bg-black"
       >
         <Input
           className="peer min-h-10 pe-9 md:min-h-10 md:ps-9"

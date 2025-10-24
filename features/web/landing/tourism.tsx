@@ -2,9 +2,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Highlighter } from "@/components/ui/highlighter";
 import { places } from "@/config/data";
-import PlacesGrid from "../places/places-grid";
+import PlacesGrid from "../tourism/places-grid";
 
-export default function Places() {
+export default function Tourism() {
   return (
     <section className="container py-16 lg:py-20">
       <div className="relative flex flex-col gap-6 lg:gap-12">
@@ -15,7 +15,7 @@ export default function Places() {
             </Highlighter>{" "}
           </h2>
           <Button asChild className="w-fit" size="lg" variant={"link"}>
-            <Link href="/places">View more</Link>
+            <Link href="/tourism">View more</Link>
           </Button>
         </div>
 
