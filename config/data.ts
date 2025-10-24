@@ -898,7 +898,7 @@ export const menu = {
   ],
 };
 
-export const reviews = [
+export const housingReviews = [
   {
     id: 1,
     body: "Amazing food and warm atmosphere. Truly the best dining spot in Kigali!",
@@ -926,6 +926,36 @@ export const reviews = [
     image: "https://images.pexels.com/photos/2080383/pexels-photo-2080383.jpeg",
     name: "Diane U.",
     location: "Gasabo - Kimironko",
+  },
+];
+export const companyReviews = [
+  {
+    id: 1,
+    body: "A great place to grow professionally. The management truly values employees and encourages skill development.",
+    image: "https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg",
+    name: "Eric N.",
+    location: "Kigali - Gasabo",
+  },
+  {
+    id: 2,
+    body: "Supportive team and flexible work environment. I’ve learned so much since joining the company.",
+    image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg",
+    name: "Aline K.",
+    location: "Kigali - Kicukiro",
+  },
+  {
+    id: 3,
+    body: "The culture here promotes collaboration and innovation. Every project feels meaningful.",
+    image: "https://images.pexels.com/photos/3775537/pexels-photo-3775537.jpeg",
+    name: "Jean Claude M.",
+    location: "Kigali - Nyarutarama",
+  },
+  {
+    id: 4,
+    body: "Excellent leadership and clear career growth opportunities. I’m proud to be part of this team.",
+    image: "https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg",
+    name: "Diane U.",
+    location: "Kigali - Kimironko",
   },
 ];
 

@@ -1,7 +1,9 @@
 export default function CompanyOverview() {
   return (
-    <section className="flex flex-col gap-4 p-4 py-6">
-      <h4 className="font-semibold text-xl">Company overview</h4>
+    <section className="flex flex-col gap-4 py-6">
+      <h4 className="mb-2 font-semibold text-xl tracking-tight lg:text-2xl">
+        Company overview
+      </h4>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <span className="block text-muted-foreground text-sm">Size</span>

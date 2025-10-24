@@ -100,3 +100,10 @@ export type TnavItem = {
   link: string;
   comingSoon?: boolean | undefined;
 };
+export type TReview = {
+  id: number;
+  body: string;
+  image: string;
+  name: string;
+  location: string;
+};

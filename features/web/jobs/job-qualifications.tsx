@@ -103,8 +103,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 export default function JobQualifications() {
   return (
-    <section className="p-4 py-6">
-      <h4 className="mb-2 font-medium text-xl tracking-tight">
+    <section className="py-6">
+      <h4 className="mb-2 font-semibold text-xl tracking-tight lg:text-2xl">
         Your qualifications for this job
       </h4>
       <div className="mt-4 space-y-4">
@@ -126,7 +126,9 @@ export default function JobQualifications() {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Qualifications</DialogTitle>
+              <DialogTitle className="md:text-xl lg:text-2xl">
+                Qualifications
+              </DialogTitle>
               <DialogDescription>
                 These are all the qualifications for this job
               </DialogDescription>

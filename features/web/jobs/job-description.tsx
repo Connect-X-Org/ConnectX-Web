@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 export default function JobDescription() {
   const [showAll, setShowAll] = useState(false);
   return (
-    <section className="space-y-6 p-4 py-6">
+    <section className="space-y-6 py-6">
       {/* about */}
       <div className="flex flex-col gap-2">
-        <h3 className="font-medium text-xl tracking-tight">
+        <h4 className="mb-2 font-semibold text-xl tracking-tight lg:text-2xl">
           About ABC Legal Services:
-        </h3>
+        </h4>
         <p className="text-primary/80">
           ABC Legal Service is proud to be the national leader in service of
           process. We are growing and are looking for talented new team members
@@ -27,7 +27,9 @@ export default function JobDescription() {
       </div>
       {/* overview */}
       <div className="flex flex-col gap-2">
-        <h3 className="font-medium text-xl tracking-tight">Job Overview:</h3>
+        <h4 className="mb-2 font-semibold text-xl tracking-tight lg:text-2xl">
+          Job Overview:
+        </h4>
         <p className="text-primary/80">
           The e-File Specialist reviews and files legal documents utilizing
           online platforms and tools developed by ABC Legal. This role works

@@ -7,8 +7,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { reviews } from "@/config/data";
-export default function HousingTestimonials() {
+import type { TReview } from "@/types";
+export default function CarouselTestimonials({
+  reviews,
+}: {
+  reviews: TReview[];
+}) {
   return (
     <div>
       <Carousel

@@ -26,12 +26,12 @@ import {
 } from "@/components/ui/carousel";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { houses } from "@/config/data";
+import { houses, housingReviews } from "@/config/data";
 import { CarouselDots } from "@/features/web/_shared/carousel-dots";
+import CarouselTestimonials from "@/features/web/_shared/testimonials";
 import Amenities from "@/features/web/housing/amenities";
 import { CheckoutSmall } from "@/features/web/housing/check-out-small";
 import HouseLocation from "@/features/web/housing/location";
-import HousingTestimonials from "@/features/web/housing/testimonials";
 import VisitVideo from "@/features/web/housing/visit-video";
 export default async function Page({
   params,
@@ -152,7 +152,7 @@ export default async function Page({
                 </Button>
               </CardFooter>
             </Card>
-            <HousingTestimonials />
+            <CarouselTestimonials reviews={housingReviews} />
           </div>
         </div>
       </div>

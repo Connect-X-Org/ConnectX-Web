@@ -70,7 +70,7 @@ export default function SearchTicketsTop() {
               <Button
                 className="rounded-full hover:bg-primary hover:text-primary-foreground"
                 key={category.label}
-                size={"iconlg"}
+                size={"icon-lg"}
                 variant={"secondary"}
               >
                 <category.icon className="size-6" />
