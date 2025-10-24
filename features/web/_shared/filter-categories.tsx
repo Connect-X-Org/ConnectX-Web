@@ -8,13 +8,14 @@ import {
   housingCategories,
   jobCategories,
   restaurantCategories,
+  ticketCategories,
   tourismCategories,
 } from "@/config/data";
 import type { TCategory } from "@/types";
 export default function FilterCategories({
   itemType,
 }: {
-  itemType: "housing" | "restaurants" | "tourism" | "jobs";
+  itemType: "housing" | "restaurants" | "tourism" | "jobs" | "tickets";
 }) {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category") || "For you";
@@ -27,6 +28,8 @@ export default function FilterCategories({
     categories = tourismCategories;
   } else if (itemType === "jobs") {
     categories = jobCategories;
+  } else if (itemType === "tickets") {
+    categories = ticketCategories;
   }
   return (
     <div className="sticky top-10 z-10 h-fit w-full bg-background dark:bg-black">

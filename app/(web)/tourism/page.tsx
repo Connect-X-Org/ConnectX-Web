@@ -11,7 +11,7 @@ export default function TourismPage() {
   return (
     <main className="relative">
       <Suspense fallback={<Skeleton className="h-10 w-full" />}>
-        <ItemFilters itemType="places" />
+        <ItemFilters itemType="tourism" />
       </Suspense>
       <Suspense fallback={<Skeleton className="h-10 w-full" />}>
         <FilterCategories itemType="tourism" />
