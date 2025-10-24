@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import { reviews } from "@/config/data";
+import { restaurantReviews } from "@/config/data";
 
 export default function RestaurantReviews() {
   return (
@@ -37,7 +37,7 @@ export default function RestaurantReviews() {
           </blockquote>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-          {reviews.map((review) => (
+          {restaurantReviews.map((review) => (
             <Card key={review.id}>
               <CardContent className="h-full">
                 <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">

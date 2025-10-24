@@ -2,10 +2,12 @@ import {
   BathIcon,
   BedDoubleIcon,
   BedSingleIcon,
+  ChevronLeftIcon,
   RulerDimensionLineIcon,
   UsersIcon,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
@@ -26,7 +28,7 @@ import {
 } from "@/components/ui/carousel";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { houses, housingReviews } from "@/config/data";
+import { houses, restaurantReviews } from "@/config/data";
 import { CarouselDots } from "@/features/web/_shared/carousel-dots";
 import CarouselTestimonials from "@/features/web/_shared/testimonials";
 import Amenities from "@/features/web/housing/amenities";
@@ -44,7 +46,7 @@ export default async function Page({
     return notFound();
   }
   return (
-    <div className="relative py-16">
+    <div className="relative py-16 pt-10">
       <div className="container relative grid min-h-screen grid-cols-12 gap-4 xl:gap-10">
         <div className="relative col-span-12 flex flex-col gap-4 md:col-span-8 2xl:col-span-9">
           <Carousel
@@ -53,6 +55,17 @@ export default async function Page({
               dragFree: true,
             }}
           >
+            <Button
+              asChild
+              className="absolute top-1 left-1 z-10 w-fit hover:scale-105"
+              size="sm"
+              variant={"default"}
+            >
+              <Link className="group flex items-center gap-1" href="/housing">
+                <ChevronLeftIcon className="group-hover:animate-pulse" />
+                Back
+              </Link>
+            </Button>
             <CarouselContent>
               {[house.src, ...house.otherImages].map((image) => (
                 <CarouselItem className="rounded-lg bg-muted" key={image}>
@@ -152,7 +165,7 @@ export default async function Page({
                 </Button>
               </CardFooter>
             </Card>
-            <CarouselTestimonials reviews={housingReviews} />
+            <CarouselTestimonials reviews={restaurantReviews} />
           </div>
         </div>
       </div>

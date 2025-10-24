@@ -1,3 +1,6 @@
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { menu, restaurants } from "@/config/data";
 import type { RestaurantWithOverviewType, TRestaurant } from "@/types";
@@ -17,8 +20,20 @@ export default function RestaurantTabs({
   return (
     <div className="relative z-10">
       <Tabs className="flex w-full flex-col" defaultValue="overview">
-        <div className="mx-auto w-full max-w-xl rounded-2xl bg-background p-4">
-          <TabsList className="w-full">
+        <div className="container sticky top-14 z-10 flex h-fit w-full items-center justify-center bg-background p-4">
+          <Button
+            asChild
+            className="absolute left-4 w-fit hover:scale-105 lg:left-6 xl:left-8"
+            size="sm"
+            variant={"ghost"}
+          >
+            <Link className="group flex items-center gap-1" href="/restaurants">
+              <ChevronLeftIcon className="group-hover:animate-pulse" />
+              Back
+            </Link>
+          </Button>
+
+          <TabsList className="mx-auto w-full max-w-xl">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="menu">Menu</TabsTrigger>
             <TabsTrigger value="reviews">Reviews</TabsTrigger>

@@ -1,7 +1,5 @@
-import { ArrowLeftIcon, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import type { TRestaurant } from "@/types";
 
 export default function RestaurantHero({
@@ -10,11 +8,11 @@ export default function RestaurantHero({
   restaurant: TRestaurant;
 }) {
   return (
-    <section className="group relative aspect-video h-[calc(90vh-69px)] w-full overflow-hidden md:h-[calc(90vh-89px)]">
+    <section className="group relative z-0 aspect-video h-[calc(90vh-69px)] w-full overflow-hidden md:h-[calc(90vh-89px)]">
       <Image
         alt={restaurant.title}
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
-        className="m-0 w-full object-cover"
+        className="z-0 m-0 w-full object-cover"
         fill
         placeholder="blur"
         src={restaurant.src}
@@ -23,15 +21,8 @@ export default function RestaurantHero({
       {/* overlay */}
       <div className="relative z-10 mx-auto flex h-[calc(90vh-69px)] max-w-7xl flex-col justify-center p-1 backdrop-blur-xs sm:p-2 md:h-[calc(90vh-89px)]">
         <div className="px-4">
-          {/* back btn */}
-          <Button asChild size="sm" variant="outline">
-            <Link href="/restaurants">
-              <ArrowLeftIcon className="size-4" />
-              Back to restaurants
-            </Link>
-          </Button>
           <div className="mt-10 flex max-w-2xl flex-col gap-2">
-            <h1 className="font-semibold text-2xl text-white uppercase leading-tight tracking-tight lg:text-4xl">
+            <h1 className="font-semibold text-2xl text-white uppercase leading-tight tracking-tight lg:text-4xl xl:text-5xl">
               {restaurant.title}
             </h1>
             <p

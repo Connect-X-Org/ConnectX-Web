@@ -29,9 +29,14 @@ export default async function Page({
     <div className="relative py-16">
       <div className="container relative grid min-h-screen grid-cols-12 gap-4 xl:gap-10">
         <div className="relative col-span-12 flex flex-col gap-4 md:col-span-8 2xl:col-span-9">
-          <Button asChild className="w-fit" size="sm" variant={"ghost"}>
-            <Link className="flex items-center gap-1" href="/jobs">
-              <ChevronLeftIcon />
+          <Button
+            asChild
+            className="w-fit hover:scale-105"
+            size="sm"
+            variant={"ghost"}
+          >
+            <Link className="group flex items-center gap-1" href="/jobs">
+              <ChevronLeftIcon className="group-hover:animate-pulse" />
               Back
             </Link>
           </Button>

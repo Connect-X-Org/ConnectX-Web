@@ -898,7 +898,7 @@ export const menu = {
   ],
 };
 
-export const housingReviews = [
+export const restaurantReviews = [
   {
     id: 1,
     body: "Amazing food and warm atmosphere. Truly the best dining spot in Kigali!",
