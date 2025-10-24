@@ -10,13 +10,17 @@ import {
   Castle,
   Church,
   CircleQuestionMarkIcon,
+  CodeIcon,
   Coffee,
   Dog,
   Factory,
   FerrisWheel,
   Fish,
   Gift,
+  Globe2Icon,
   GlobeIcon,
+  GraduationCapIcon,
+  HammerIcon,
   Handshake,
   Home,
   Hospital,
@@ -27,6 +31,7 @@ import {
   Landmark,
   LandmarkIcon,
   LandPlot,
+  LaptopIcon,
   LifeBuoy,
   ListIcon,
   MapPin,
@@ -36,13 +41,17 @@ import {
   Monitor,
   Mountain,
   Newspaper,
+  PaletteIcon,
   PhoneIcon,
   Pizza,
   Radio,
   Salad,
   Sandwich,
   ShieldCheck,
+  ShieldIcon,
+  ShoppingBagIcon,
   Soup,
+  StethoscopeIcon,
   StoreIcon,
   Sun,
   TentTree,
@@ -51,12 +60,15 @@ import {
   Train,
   Trees,
   Trophy,
+  TruckIcon,
   Umbrella,
   UserSquare2,
   Users,
   UsersRoundIcon,
   Utensils,
+  WalletIcon,
   Waves,
+  WrenchIcon,
 } from "lucide-react";
 import type {
   TCategory,
@@ -73,46 +85,55 @@ export const services = [
     name: "Gvt services",
     href: "/gvt-services",
     icon: Landmark, // govt building / services
+    isComingSoon: true,
   },
   {
     name: "Restaurants",
     href: "/restaurants",
     icon: Utensils, // food & dining
+    isComingSoon: false,
   },
   {
     name: "Housing",
     href: "/housing",
     icon: Home, // houses/apartments
+    isComingSoon: false,
   },
   {
     name: "Tourism",
     href: "/tourism",
     icon: Building2, // landmarks / attractions
+    isComingSoon: false,
   },
   {
     name: "Health care",
     href: "/health-care",
     icon: Hospital, // medical
+    isComingSoon: true,
   },
   {
     name: "Rwanda media",
     href: "/media",
     icon: Radio, // media / broadcast
+    isComingSoon: true,
   },
   {
     name: "Shopping",
     href: "/shop",
     icon: StoreIcon, // shopping / malls
+    isComingSoon: true,
   },
   {
     name: "Tickets",
     href: "/tickets",
     icon: TicketsIcon, // tickets / transport
+    isComingSoon: false,
   },
   {
     name: "Jobs",
     href: "/jobs",
     icon: Briefcase, // work/jobs
+    isComingSoon: false,
   },
 ];
 
@@ -960,6 +981,24 @@ export const restaurantCategories: TCategory[] = [
   { label: "Sandwiches", icon: Sandwich },
   { label: "Cocktails", icon: Martini },
   { label: "Healthy", icon: Apple },
+];
+
+export const jobCategories: TCategory[] = [
+  { label: "For you", icon: Briefcase },
+  { label: "Technology", icon: CodeIcon },
+  { label: "Remote Jobs", icon: LaptopIcon },
+  { label: "Engineering", icon: WrenchIcon },
+  { label: "Healthcare", icon: StethoscopeIcon },
+  { label: "Education", icon: GraduationCapIcon },
+  { label: "Design & Creative", icon: PaletteIcon },
+  { label: "Business & Finance", icon: WalletIcon },
+  { label: "Construction", icon: HammerIcon },
+  { label: "Logistics & Transport", icon: TruckIcon },
+  { label: "Hospitality", icon: Building2 },
+  { label: "Sales & Marketing", icon: ShoppingBagIcon },
+  { label: "Human Resources", icon: Users },
+  { label: "Security", icon: ShieldIcon },
+  { label: "International", icon: Globe2Icon },
 ];
 
 export const tourismCategories = [

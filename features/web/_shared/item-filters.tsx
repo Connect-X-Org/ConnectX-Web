@@ -10,7 +10,7 @@ export default function ItemFilters({ itemType }: { itemType: string }) {
   const isSmallDevice = useIsMobile();
 
   return (
-    <div className="container flex w-full items-center justify-between gap-4 pt-6">
+    <div className="container flex w-full items-center justify-between gap-4 pt-6 pb-2">
       <Form
         action={`/${itemType}`}
         className="relative w-full max-w-1/2 2xl:max-w-3xl dark:bg-black"

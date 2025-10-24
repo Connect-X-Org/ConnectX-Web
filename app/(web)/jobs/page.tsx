@@ -1,23 +1,22 @@
 import type { Metadata } from "next";
-import JobCardsList from "@/features/web/jobs/job-cards-list";
-import JobPage from "@/features/web/jobs/job-page";
-import SearchJobsTop from "@/features/web/jobs/search-top";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import FilterCategories from "@/features/web/_shared/filter-categories";
+import ItemFilters from "@/features/web/_shared/item-filters";
+import JobsLanding from "@/features/web/jobs/landing";
 export const metadata: Metadata = {
   title: "Jobs",
 };
-export default async function JobsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ slug: string }>;
-}) {
-  const { slug } = await searchParams;
+export default function JobsPage() {
   return (
-    <main className="bg-dashed">
-      <SearchJobsTop />
-      <main className="container relative grid grid-cols-12 py-4">
-        <JobCardsList slug={slug} />
-        <JobPage slug={slug} />
-      </main>
+    <main className="relative">
+      <Suspense fallback={<Skeleton className="h-10 w-full" />}>
+        <ItemFilters itemType="jobs" />
+      </Suspense>
+      <Suspense fallback={<Skeleton className="h-10 w-full" />}>
+        <FilterCategories itemType="jobs" />
+      </Suspense>
+      <JobsLanding />
     </main>
   );
 }

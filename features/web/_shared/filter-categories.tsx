@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   housingCategories,
+  jobCategories,
   restaurantCategories,
   tourismCategories,
 } from "@/config/data";
@@ -13,7 +14,7 @@ import type { TCategory } from "@/types";
 export default function FilterCategories({
   itemType,
 }: {
-  itemType: "housing" | "restaurants" | "tourism";
+  itemType: "housing" | "restaurants" | "tourism" | "jobs";
 }) {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category") || "For you";
@@ -24,10 +25,12 @@ export default function FilterCategories({
     categories = restaurantCategories;
   } else if (itemType === "tourism") {
     categories = tourismCategories;
+  } else if (itemType === "jobs") {
+    categories = jobCategories;
   }
   return (
     <div className="sticky top-10 z-10 h-fit w-full bg-background dark:bg-black">
-      <ScrollArea className="mx-auto mt-10 w-[95vw]">
+      <ScrollArea className="mx-auto w-[95vw]">
         <div className="flex gap-2 pt-4 pb-2">
           {categories.map((category) => {
             const isActive = activeCategory === category.label;
