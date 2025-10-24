@@ -15,11 +15,14 @@ export default function Tourism() {
             </Highlighter>{" "}
           </h2>
           <Button asChild className="w-fit" size="lg" variant={"link"}>
-            <Link href="/tourism">View more</Link>
+            <Link href="/tourism">View all places</Link>
           </Button>
         </div>
 
         <PlacesGrid limit={6} places={places} />
+        <Button asChild className="w-fit">
+          <Link href="/tourism">See more places</Link>
+        </Button>
       </div>
     </section>
   );

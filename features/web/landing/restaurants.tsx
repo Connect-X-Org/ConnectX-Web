@@ -15,10 +15,13 @@ export default function Restaurants() {
             </Highlighter>{" "}
           </h2>
           <Button asChild className="w-fit" size="lg" variant={"link"}>
-            <Link href="/restaurants">View more</Link>
+            <Link href="/restaurants">View all restaurants</Link>
           </Button>
         </div>
         <RestaurantsGrid limit={6} restaurants={restaurants} />
+        <Button asChild className="w-fit">
+          <Link href="/restaurants">See more restaurants</Link>
+        </Button>
       </div>
     </section>
   );

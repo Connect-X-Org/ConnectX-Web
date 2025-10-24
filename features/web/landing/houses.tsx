@@ -16,10 +16,13 @@ export default function Houses() {
             </Highlighter>{" "}
           </h2>
           <Button asChild className="w-fit" size="lg" variant={"link"}>
-            <Link href="/housing">View more</Link>
+            <Link href="/housing">View all houses</Link>
           </Button>
         </div>
         <HousesGrid houses={houses} limit={6} />
+        <Button asChild className="w-fit">
+          <Link href="/housing">See more houses</Link>
+        </Button>
       </div>
     </section>
   );

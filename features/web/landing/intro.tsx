@@ -16,6 +16,7 @@ export default function IntroContent() {
               is <span className="font-medium text-primary">Paul Kagame</span>,
               leading the country with a vision of unity and progress.
             </h2>
+
             <TheLink
               className="flex items-center gap-1 font-semibold text-blue-600 italic transition-all duration-300 ease-in hover:tracking-wide dark:text-blue-500"
               href={"/"}
