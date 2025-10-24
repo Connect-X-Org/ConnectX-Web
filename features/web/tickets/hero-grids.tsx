@@ -58,12 +58,12 @@ export default function HeroGrids() {
         >
           <CarouselContent>
             {images.map((image) => (
-              <CarouselItem className="rounded-lg bg-muted" key={image.src}>
+              <CarouselItem className="bg-muted" key={image.src}>
                 <Link href={`/tickets/${image.href}`}>
                   <AspectRatio ratio={16 / 9}>
                     <Image
                       alt={image.title}
-                      className="h-full w-full rounded-lg object-cover"
+                      className="h-full w-full object-cover"
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       src={image.src}
@@ -87,16 +87,13 @@ export default function HeroGrids() {
           <div className="grid grid-cols-2 gap-4 gap-y-8 overflow-hidden">
             {images.map((image) => (
               <div
-                className="relative w-full cursor-pointer overflow-hidden rounded-lg bg-muted transition-all duration-300 ease-in hover:scale-105"
+                className="relative w-full cursor-pointer overflow-hidden bg-muted transition-all duration-300 ease-in hover:scale-105"
                 key={image.src}
               >
-                <AspectRatio
-                  className="relative overflow-hidden rounded-lg"
-                  ratio={4 / 3}
-                >
+                <AspectRatio className="relative overflow-hidden" ratio={4 / 3}>
                   <Image
                     alt={image.title}
-                    className="h-full w-full rounded-lg object-cover"
+                    className="h-full w-full object-cover"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     src={image.src}
@@ -104,9 +101,9 @@ export default function HeroGrids() {
                 </AspectRatio>
                 <ProgressiveBlur
                   blurIntensity={6}
-                  className="pointer-events-none absolute right-0 bottom-0 left-0 h-[50%] w-full rounded-b-lg"
+                  className="pointer-events-none absolute right-0 bottom-0 left-0 h-[50%] w-full"
                 />
-                <div className="absolute bottom-0 left-0 rounded-b-lg">
+                <div className="absolute bottom-0 left-0">
                   <div className="flex flex-col items-start gap-0 px-5">
                     <p className="font-medium text-base text-white">
                       {image.title}

@@ -43,7 +43,7 @@ export default function NavItem({
             />
           )}
         </AnimatePresence>
-        <span className="relative z-20">{item.label}</span>
+        <span className="relative z-10">{item.label}</span>
       </Link>
     </motion.div>
   );

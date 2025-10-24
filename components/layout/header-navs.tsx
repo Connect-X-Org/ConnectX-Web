@@ -14,7 +14,7 @@ export default function HeaderNavs() {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-50 flex w-full items-center justify-center gap-4 border-muted border-b bg-background dark:bg-black"
+        "sticky top-0 z-20 flex w-full items-center justify-center gap-4 border-muted border-b bg-background dark:bg-black"
       )}
     >
       <ScrollArea className="w-[100vw] overflow-hidden lg:w-full">

@@ -13,7 +13,7 @@ import SignInTop from "./sign-in-top";
 export default function SiteHeader() {
   return (
     <>
-      <header className="relative top-0 z-50 flex h-auto w-full flex-col items-center justify-between lg:relative dark:bg-black">
+      <header className="relative top-0 z-10 flex h-auto w-full flex-col items-center justify-between lg:relative dark:bg-black">
         <div className="container flex w-full items-center gap-x-10 pt-4 pb-4">
           <MobileNav className="flex xl:hidden" />
           <Link

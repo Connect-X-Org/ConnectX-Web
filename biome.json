@@ -24,7 +24,8 @@
       },
       "style": {
         "useBlockStatements": "off",
-        "noMagicNumbers": "off"
+        "noMagicNumbers": "off",
+        "noNestedTernary": "off"
       },
       "performance": {
         "noNamespaceImport": "warn"

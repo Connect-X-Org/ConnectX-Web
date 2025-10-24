@@ -17,7 +17,7 @@ export default function RestaurantHero({
         placeholder="blur"
         src={restaurant.src}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />
       {/* overlay */}
       <div className="relative z-10 mx-auto flex h-[calc(90vh-69px)] max-w-7xl flex-col justify-center p-1 backdrop-blur-xs sm:p-2 md:h-[calc(90vh-89px)]">
         <div className="px-4">

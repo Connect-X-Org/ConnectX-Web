@@ -54,6 +54,24 @@
 
   --color-selection: var(--selection);
   --color-selection-foreground: var(--selection-foreground);
+
+  /* for ai */
+  --color-fd-background: var(--fd-background);
+  --color-fd-foreground: var(--fd-foreground);
+  --color-fd-muted: var(--fd-muted);
+  --color-fd-muted-foreground: var(--fd-muted-foreground);
+  --color-fd-popover: var(--fd-popover);
+  --color-fd-popover-foreground: var(--fd-popover-foreground);
+  --color-fd-card: var(--fd-card);
+  --color-fd-card-foreground: var(--fd-card-foreground);
+  --color-fd-border: var(--fd-border);
+  --color-fd-primary: var(--fd-primary);
+  --color-fd-primary-foreground: var(--fd-primary-foreground);
+  --color-fd-secondary: var(--fd-secondary);
+  --color-fd-secondary-foreground: var(--fd-secondary-foreground);
+  --color-fd-accent: var(--fd-accent);
+  --color-fd-accent-foreground: var(--fd-accent-foreground);
+  --color-fd-ring: var(--fd-ring);
 }
 
 :root {
@@ -95,6 +113,24 @@
 
   --selection: oklch(0.145 0 0);
   --selection-foreground: oklch(1 0 0);
+
+  /* for ai */
+  --fd-background: hsl(0, 0%, 96%);
+  --fd-foreground: hsl(0, 0%, 3.9%);
+  --fd-muted: hsl(0, 0%, 96.1%);
+  --fd-muted-foreground: hsl(0, 0%, 45.1%);
+  --fd-popover: hsl(0, 0%, 98%);
+  --fd-popover-foreground: hsl(0, 0%, 15.1%);
+  --fd-card: hsl(0, 0%, 94.7%);
+  --fd-card-foreground: hsl(0, 0%, 3.9%);
+  --fd-border: hsla(0, 0%, 80%, 50%);
+  --fd-primary: hsl(0, 0%, 9%);
+  --fd-primary-foreground: hsl(0, 0%, 98%);
+  --fd-secondary: hsl(0, 0%, 93.1%);
+  --fd-secondary-foreground: hsl(0, 0%, 9%);
+  --fd-accent: hsla(0, 0%, 82%, 50%);
+  --fd-accent-foreground: hsl(0, 0%, 9%);
+  --fd-ring: hsl(0, 0%, 63.9%);
 }
 
 .dark {
@@ -135,6 +171,24 @@
 
   --selection: oklch(0.922 0 0);
   --selection-foreground: oklch(0.205 0 0);
+
+  /* for ai */
+  --fd-background: hsl(0, 0%, 7.04%);
+  --fd-foreground: hsl(0, 0%, 92%);
+  --fd-muted: hsl(0, 0%, 12.9%);
+  --fd-muted-foreground: hsla(0, 0%, 70%, 0.8);
+  --fd-popover: hsl(0, 0%, 11.6%);
+  --fd-popover-foreground: hsl(0, 0%, 86.9%);
+  --fd-card: hsl(0, 0%, 9.8%);
+  --fd-card-foreground: hsl(0, 0%, 98%);
+  --fd-border: hsla(0, 0%, 40%, 20%);
+  --fd-primary: hsl(0, 0%, 98%);
+  --fd-primary-foreground: hsl(0, 0%, 9%);
+  --fd-secondary: hsl(0, 0%, 12.9%);
+  --fd-secondary-foreground: hsl(0, 0%, 92%);
+  --fd-accent: hsla(0, 0%, 40.9%, 30%);
+  --fd-accent-foreground: hsl(0, 0%, 90%);
+  --fd-ring: hsl(0, 0%, 54.9%);
 }
 
 @layer base {
@@ -213,12 +267,10 @@
   );
   background-size: 0.25rem 0.25rem;
 }
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
