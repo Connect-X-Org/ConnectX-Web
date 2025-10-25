@@ -1,4 +1,3 @@
-import ChatBtn from "@/components/layout/chat-btn";
 import Cta from "@/components/layout/cta";
 // import MapBtn from "@/components/layout/map-btn";
 import SiteFooter from "@/components/layout/site-footer";
@@ -14,7 +13,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </main>
 
       <Cta />
-      {/* <ChatBtn /> */}
       <AISearchTrigger />
       <SiteFooter />
     </div>

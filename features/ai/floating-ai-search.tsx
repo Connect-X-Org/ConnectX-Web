@@ -65,7 +65,7 @@ const suggestions = [
   "Find local events and festivals",
 ];
 
-function SearchAIInput(props: ComponentProps<"form"> & { isMobile?: boolean }) {
+function SearchAIInput(props: ComponentProps<"form"> & { ismobile?: boolean }) {
   const { status, sendMessage, stop, messages, setMessages } = useChatContext();
   const [input, setInput] = useState("");
   const isLoading = status === "streaming" || status === "submitted";
@@ -114,7 +114,7 @@ function SearchAIInput(props: ComponentProps<"form"> & { isMobile?: boolean }) {
               onStart(event);
             }
           }}
-          placeholder={isLoading ? "answering..." : "Ask BA Bot"}
+          placeholder={isLoading ? "answering..." : "Ask CX Assistant"}
           value={input}
         />
         {isLoading ? (
@@ -149,14 +149,14 @@ function SearchAIInput(props: ComponentProps<"form"> & { isMobile?: boolean }) {
       </form>
 
       {showSuggestions && (
-        <div className={cn("mt-3", props.isMobile ? "px-3" : "px-4")}>
+        <div className={cn("mt-3", props.ismobile ? "px-3" : "px-4")}>
           <p className="mb-2 font-medium text-fd-muted-foreground text-xs">
             Try asking:
           </p>
           <div
             className={cn(
               "flex gap-2",
-              props.isMobile
+              props.ismobile
                 ? "-mx-3 overflow-x-auto px-3 pb-2 [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_1rem,black_calc(100%-1rem),transparent_100%)] [mask-image:linear-gradient(to_right,transparent_0%,black_1rem,black_calc(100%-1rem),transparent_100%)]"
                 : "flex-wrap"
             )}
@@ -165,7 +165,7 @@ function SearchAIInput(props: ComponentProps<"form"> & { isMobile?: boolean }) {
               <button
                 className={cn(
                   "rounded-full border border-fd-border/50 bg-fd-muted/30 text-left text-fd-muted-foreground transition-all duration-200 hover:border-fd-border hover:bg-fd-muted/50 hover:text-fd-foreground",
-                  props.isMobile
+                  props.ismobile
                     ? "flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs"
                     : "px-3 py-1.5 text-xs"
                 )}
@@ -185,11 +185,11 @@ function SearchAIInput(props: ComponentProps<"form"> & { isMobile?: boolean }) {
             Powered by{" "}
             <Link
               className="text-fd-primary hover:text-fd-primary/80 hover:underline"
-              href="https://inkeep.com"
+              href="https://rathon-rw.com"
               rel="noopener noreferrer"
               target="_blank"
             >
-              Inkeep.
+              Rathon
             </Link>
             <span className="hidden sm:inline">
               AI can be inaccurate, please verify the information.
@@ -342,14 +342,14 @@ function Input(props: ComponentProps<"textarea">) {
 
 const roleName: Record<string, string> = {
   user: "you",
-  assistant: "BA bot",
+  assistant: "CX Assistant",
 };
 
 function ThinkingIndicator() {
   return (
     <div className="flex flex-col">
       <p className="mb-1 font-medium text-fd-muted-foreground text-sm">
-        BA bot
+        CX Assistant
       </p>
       <div className="flex items-end gap-1 text-fd-muted-foreground text-sm">
         <div className="flex items-center gap-1 opacity-70">
@@ -586,7 +586,7 @@ export function AISearchTrigger() {
                 ? "h-auto w-[calc(100vw-2rem)] overflow-visible bg-fd-accent/30"
                 : "h-auto w-[min(800px,90vw)] overflow-visible bg-fd-accent/30"
               : isMobile
-                ? "h-12 w-32 overflow-hidden rounded-2xl bg-fd-secondary text-fd-secondary-foreground shadow-fd-background"
+                ? "h-9 w-32 overflow-hidden rounded-2xl bg-fd-secondary text-fd-secondary-foreground shadow-fd-background lg:h-12"
                 : "h-10 w-40 overflow-hidden rounded-2xl bg-fd-secondary text-fd-secondary-foreground shadow-fd-background"
           )}
           style={{
@@ -594,27 +594,24 @@ export function AISearchTrigger() {
           }}
         >
           {!open && (
-            <button
+            <Button
               className={cn(
-                "absolute inset-0 rounded-2xl text-center transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground",
-                isMobile ? "p-3 text-xs" : "p-2 text-sm",
-                "text-fd-muted-foreground"
+                "absolute inset-0 my-auto flex items-center justify-center rounded-2xl text-center lg:h-12"
               )}
               onClick={() => setOpen(true)}
-              type="button"
             >
               <SearchIcon
                 className={cn(
-                  "-translate-y-1/2 absolute top-1/2",
+                  "absolute left-2",
                   isMobile ? "left-2 size-4" : "size-4.5"
                 )}
               />
               <span className={cn(isMobile ? "ml-6" : "")}>Ask AI</span>
-            </button>
+            </Button>
           )}
           {open && (
             <div className="flex flex-col">
-              <SearchAIInput isMobile={isMobile} />
+              <SearchAIInput ismobile={isMobile} />
             </div>
           )}
         </div>

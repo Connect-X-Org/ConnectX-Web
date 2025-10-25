@@ -123,7 +123,7 @@ const SuggestionsChat = ({
               maxHeight={200}
               minHeight={44}
               onChange={(e) => setText(e.currentTarget.value)}
-              placeholder="Send a message..."
+              placeholder="Ask CX Assistant"
               rows={1}
               value={text}
             />

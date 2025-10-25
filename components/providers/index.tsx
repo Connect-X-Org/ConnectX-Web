@@ -21,7 +21,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
         {children}
       </AppProgressProvider>
       <BreakpointIndicator className="absolute" />
-      <Toaster closeButton />
       <Analytics />
       <Toaster closeButton position="top-right" />
     </ThemeProvider>

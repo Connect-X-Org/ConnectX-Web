@@ -1,5 +1,5 @@
-import ChatBtn from "@/components/layout/chat-btn";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AISearchTrigger } from "@/features/ai/floating-ai-search";
 import { AppSidebar } from "@/features/dashboard/layout/app-sidebar";
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +16,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <AppSidebar variant="inset" />
         <SidebarInset>{children}</SidebarInset>
       </SidebarProvider>
-      <ChatBtn />
+      <AISearchTrigger />
     </div>
   );
 }
