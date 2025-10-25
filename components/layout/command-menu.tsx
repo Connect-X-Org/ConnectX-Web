@@ -153,7 +153,10 @@ export function CommandMenu({
   );
 }
 
-function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
+export function CommandMenuKbd({
+  className,
+  ...props
+}: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(

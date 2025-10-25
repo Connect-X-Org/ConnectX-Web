@@ -1,7 +1,11 @@
-import { ArrowRightIcon, SearchIcon } from "lucide-react";
+"use client";
+import { SearchIcon } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
+import { useIsMac } from "@/hooks/use-is-mac";
+import { CommandMenuKbd } from "./command-menu";
 export default function SearchTop() {
+  const isMac = useIsMac();
   return (
     <div className="mx-auto hidden w-full max-w-xl items-center gap-x-4 rounded-full md:flex lg:gap-x-6">
       <div className="relative w-full">
@@ -13,13 +17,13 @@ export default function SearchTop() {
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
           <SearchIcon size={16} />
         </div>
-        <button
-          aria-label="Submit search"
-          className="absolute inset-y-0 end-0 hidden h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus:z-10 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 lg:flex"
-          type="submit"
-        >
-          <ArrowRightIcon aria-hidden="true" size={16} />
-        </button>
+
+        <div className="absolute inset-y-0 end-2 hidden items-center justify-center gap-1 lg:flex">
+          <CommandMenuKbd className="aspect-square bg-muted">
+            {isMac ? "⌘" : "Ctrl"}
+          </CommandMenuKbd>
+          <CommandMenuKbd className="aspect-square bg-muted">K</CommandMenuKbd>
+        </div>
       </div>
     </div>
   );
