@@ -1,8 +1,9 @@
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 import { footerLinks } from "@/config/data";
-import { siteConfig } from "@/config/site";
 import { TextLoop } from "../custom/text-loop";
+import FooterDate from "./footer-date";
 import SubscribeForm from "./subscribe-form";
 import { ThemeSwitcher } from "./theme-switcher";
 
@@ -62,9 +63,9 @@ export default function SiteFooter() {
                 className="text-xs text-zinc-500 lg:min-w-[200px]"
                 interval={3}
               >
-                <p className="text-balance text-muted-foreground text-sm leading-5">
-                  © {new Date().getFullYear()} {siteConfig.name}.
-                </p>
+                <Suspense>
+                  <FooterDate />
+                </Suspense>
                 <span className="text-balance text-muted-foreground text-sm leading-5">
                   Built By{" "}
                   <a

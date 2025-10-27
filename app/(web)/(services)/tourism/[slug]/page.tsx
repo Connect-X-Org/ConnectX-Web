@@ -1,4 +1,5 @@
 import { BookmarkIcon, ChevronLeftIcon } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -24,6 +25,47 @@ import Amenities from "@/features/web/housing/amenities";
 import { CheckoutSmall } from "@/features/web/housing/check-out-small";
 import HouseLocation from "@/features/web/housing/location";
 import VisitVideo from "@/features/web/housing/visit-video";
+export function generateStaticParams() {
+  return places.map((place) => ({
+    slug: place.slug,
+  }));
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const place = places.find((p) => p.slug === slug);
+
+  if (!place) {
+    return {
+      title: "Place Not Found",
+      description: "The place you're looking for doesn't exist.",
+    };
+  }
+
+  return {
+    title: `${place.title} | ${place.place}`,
+    description: place.description,
+    openGraph: {
+      title: `${place.title} | ${place.place}`,
+      description: place.description,
+      images: [
+        {
+          url: place.src,
+          alt: place.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: place.title,
+      description: place.description,
+      images: [place.src],
+    },
+  };
+}
 export default async function Page({
   params,
 }: {
