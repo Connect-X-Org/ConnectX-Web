@@ -70,7 +70,7 @@ export default async function Page({
   }
   return (
     <div className="container relative py-16">
-      <div className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-12 gap-4 xl:gap-10">
+      <div className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-12 gap-4 lg:px-4 xl:gap-10 2xl:px-0">
         <div className="relative col-span-12 flex flex-col gap-4 md:col-span-8 2xl:col-span-9">
           <Button
             asChild
