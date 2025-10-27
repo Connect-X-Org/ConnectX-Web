@@ -47,8 +47,8 @@ export default async function Page({
     return notFound();
   }
   return (
-    <div className="container relative py-16 pt-10">
-      <div className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-12 gap-4 xl:gap-10">
+    <div className="container py-16 pt-10">
+      <div className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-12 gap-4 lg:px-4 xl:max-w-[90rem] xl:gap-10 2xl:px-0">
         <div className="relative col-span-12 flex flex-col gap-4 md:col-span-8">
           <Carousel
             opts={{
@@ -56,17 +56,6 @@ export default async function Page({
               dragFree: true,
             }}
           >
-            <Button
-              asChild
-              className="absolute top-1 left-1 z-10 w-fit hover:scale-105"
-              size="sm"
-              variant={"default"}
-            >
-              <Link className="group flex items-center gap-1" href="/housing">
-                <ChevronLeftIcon className="group-hover:animate-pulse" />
-                Back
-              </Link>
-            </Button>
             <CarouselContent>
               {[house.src, ...house.otherImages].map((image) => (
                 <CarouselItem className="rounded-lg bg-muted" key={image}>
@@ -134,7 +123,7 @@ export default async function Page({
             <HouseLocation place={house.place[0]} />
           </div>
         </div>
-        <div className="sticky top-14 col-span-12 block h-fit md:col-span-4 2xl:col-span-3">
+        <div className="sticky top-10 col-span-12 block h-fit md:col-span-4 2xl:col-span-3">
           <div className="flex flex-col gap-4">
             <Card className="hidden lg:flex">
               <CardHeader>
@@ -152,8 +141,15 @@ export default async function Page({
                 <Button className="flex-1" size={"lg"} variant={"outline"}>
                   Check-In
                 </Button>
-                <Button className="flex-1" size={"lg"} variant="outline">
-                  Check-Out
+
+                <Button asChild className="w-fit" size="lg" variant={"outline"}>
+                  <Link
+                    className="group flex items-center gap-1"
+                    href="/housing"
+                  >
+                    <ChevronLeftIcon className="group-hover:animate-pulse" />
+                    Back
+                  </Link>
                 </Button>
               </CardContent>
               <Separator />
