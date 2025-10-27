@@ -163,41 +163,49 @@ export const company = [
     name: "About Us",
     href: "/company/about",
     icon: Info, // info/about
+    isComingSoon: true,
   },
   {
     name: "Careers",
     href: "/company/careers",
     icon: BadgeCheck, // verified roles / jobs
+    isComingSoon: true,
   },
   {
     name: "Blogs",
     href: "/company/blogs",
     icon: Newspaper, // news
+    isComingSoon: true,
   },
   {
     name: "Partners",
     href: "/company/partnerships",
     icon: Handshake, // collaboration
+    isComingSoon: true,
   },
   {
     name: "Press",
     href: "/company/press",
     icon: Mic2Icon, // news
+    isComingSoon: true,
   },
   {
     name: "Privacy Policy",
     href: "/company/privacy",
     icon: ShieldCheck, // protection/security
+    isComingSoon: true,
   },
   {
     name: "Waiting List",
     href: "/waiting-list",
     icon: ListIcon, // protection/security
+    isComingSoon: false,
   },
   {
     name: "Contact Us",
     href: "/company/contact",
     icon: PhoneIcon, // protection/security
+    isComingSoon: true,
   },
 ];
 
@@ -1201,7 +1209,7 @@ export const jobs: Tjob[] = [
   },
 ];
 const eventImages = [
-  "/images/tiq-1.jpeg",
+  "/images/tiq-1.avif",
   "/images/tiq-2.jpeg",
   "/images/tiq-3.jpeg",
   "/images/tiq-4.jpeg",

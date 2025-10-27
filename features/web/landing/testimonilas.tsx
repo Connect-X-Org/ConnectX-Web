@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { AnimatedTestimonials } from "@/components/custom/animated-testimonials";
 import { Highlighter } from "@/components/ui/highlighter";
 import { testimonials } from "@/config/data";
@@ -18,10 +19,12 @@ export default function Testimonilas() {
             moments in Rwanda.
           </p>
         </div>
-        <AnimatedTestimonials
-          className="text-left"
-          testimonials={testimonials}
-        />
+        <Suspense>
+          <AnimatedTestimonials
+            className="text-left"
+            testimonials={testimonials}
+          />
+        </Suspense>
       </div>
     </section>
   );

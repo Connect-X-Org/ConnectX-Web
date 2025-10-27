@@ -7,6 +7,7 @@ import {
   RulerDimensionLineIcon,
   UsersIcon,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -36,6 +37,47 @@ import Amenities from "@/features/web/housing/amenities";
 import { CheckoutSmall } from "@/features/web/housing/check-out-small";
 import HouseLocation from "@/features/web/housing/location";
 import VisitVideo from "@/features/web/housing/visit-video";
+export function generateStaticParams() {
+  return houses.map((house) => ({
+    slug: house.slug,
+  }));
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const house = houses.find((h) => h.slug === slug);
+
+  if (!house) {
+    return {
+      title: "House Not Found",
+      description: "The house you're looking for doesn't exist.",
+    };
+  }
+
+  return {
+    title: `${house.title} | ${house.place}`,
+    description: house.description,
+    openGraph: {
+      title: `${house.title} | ${house.place}`,
+      description: house.description,
+      images: [
+        {
+          url: house.src,
+          alt: house.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: house.title,
+      description: house.description,
+      images: [house.src],
+    },
+  };
+}
 export default async function Page({
   params,
 }: {

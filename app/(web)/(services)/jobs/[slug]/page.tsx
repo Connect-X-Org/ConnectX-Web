@@ -1,4 +1,5 @@
 import { BookmarkIcon, ChevronLeftIcon } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,48 @@ import { CheckoutSmall } from "@/features/web/housing/check-out-small";
 import CompanyOverview from "@/features/web/jobs/company-overview";
 import JobDescription from "@/features/web/jobs/job-description";
 import JobQualifications from "@/features/web/jobs/job-qualifications";
+import img from "@/public/gradients_3.png";
+export function generateStaticParams() {
+  return jobs.map((job) => ({
+    slug: job.slug,
+  }));
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const job = jobs.find((j) => j.slug === slug);
+
+  if (!job) {
+    return {
+      title: "Job Not Found",
+      description: "The job you're looking for doesn't exist.",
+    };
+  }
+
+  return {
+    title: `${job.title} | ${job.company}`,
+    description: `The job offered by ${job.company} with a salary range of $${job.salary.min} - $${job.salary.max} ${job.salary.type}.`,
+    openGraph: {
+      title: `${job.title} | ${job.company}`,
+      description: `The job offered by ${job.company} with a salary range of $${job.salary.min} - $${job.salary.max} ${job.salary.type}.`,
+      images: [
+        {
+          url: img.src,
+          alt: job.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: job.title,
+      description: `The job offered by ${job.company} with a salary range of $${job.salary.min} - $${job.salary.max} ${job.salary.type}.`,
+      images: [img.src],
+    },
+  };
+}
 export default async function Page({
   params,
 }: {

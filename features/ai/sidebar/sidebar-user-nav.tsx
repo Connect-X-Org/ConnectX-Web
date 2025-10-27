@@ -47,6 +47,11 @@ export function SidebarUserNav() {
             data-testid="user-nav-menu"
             side="top"
           >
+            <DropdownMenuItem asChild data-testid="user-nav-item-auth">
+              <Link className="w-full" href="/">
+                Return to home{" "}
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem
               className="cursor-pointer"
               data-testid="user-nav-item-theme"
@@ -58,9 +63,9 @@ export function SidebarUserNav() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild data-testid="user-nav-item-auth">
-              <button className="w-full cursor-pointer" type="button">
-                <Link href="/sign-in">Login to your account</Link>
-              </button>
+              <Link className="w-full" href="/sign-in">
+                Login to your account
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
