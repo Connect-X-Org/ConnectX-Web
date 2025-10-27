@@ -14,6 +14,12 @@ import { CarouselDots } from "../_shared/carousel-dots";
 // Slides data
 const slides = [
   {
+    title: "Ready to explore Rwanda's top tourist spots?",
+    video:
+      "https://videos.pexels.com/video-files/2882117/2882117-uhd_2560_1440_24fps.mp4",
+    buttonText: "Start Exploring",
+  },
+  {
     title: "What are you feeling like to eat today?",
     video:
       "https://videos.pexels.com/video-files/3015488/3015488-hd_1920_1080_24fps.mp4",
@@ -30,12 +36,6 @@ const slides = [
     video:
       "https://videos.pexels.com/video-files/4121739/4121739-uhd_2560_1440_25fps.mp4",
     buttonText: "Explore Shops",
-  },
-  {
-    title: "Ready to explore Rwanda's top tourist spots?",
-    video:
-      "https://videos.pexels.com/video-files/2882117/2882117-uhd_2560_1440_24fps.mp4",
-    buttonText: "Start Exploring",
   },
 ];
 
@@ -72,8 +72,8 @@ export default function HeroCarousel() {
         }}
         plugins={[
           Autoplay({
-            delay: 7000,
-            stopOnMouseEnter: true,
+            delay: 5000,
+            stopOnInteraction: true,
           }),
         ]}
       >

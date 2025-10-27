@@ -1,8 +1,9 @@
-import { BookmarkIcon } from "lucide-react";
+import { BookmarkIcon, StarIcon, UsersIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import type { TPlace } from "@/types";
 
@@ -63,10 +64,29 @@ export default function PlacesGrid({
               <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50" />
             </div>
           </div>
-          <div className="mt-3">
-            <p className="line-clamp-3 text-[16px] text-primary/90 text-sm leading-7">
+          <div className="mt-2">
+            <p className="line-clamp-2 text-[16px] text-primary/90 text-sm leading-6">
               {place.description}
             </p>
+          </div>
+
+          <div className="mt-3 flex items-center gap-4 font-medium text-sm">
+            <p>
+              <span className="text-muted-foreground">From</span>{" "}
+              <span className="font-medium">$640/day</span>
+            </p>
+            <Separator
+              className="border-r after:border-r-muted-foreground"
+              orientation="vertical"
+            />
+            <div className="flex items-center gap-1">
+              <StarIcon className="size-4 text-muted-foreground" />
+              <span>5</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <UsersIcon className="size-4 text-muted-foreground" />
+              <span>540 Reviews</span>
+            </div>
           </div>
         </Link>
       ))}
