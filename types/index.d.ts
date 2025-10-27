@@ -1,3 +1,9 @@
+export type Tservices =
+  | "housing"
+  | "restaurants"
+  | "tourism"
+  | "tickets"
+  | "jobs";
 export type Food = {
   id: number;
   image: string;

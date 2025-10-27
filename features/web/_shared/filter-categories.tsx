@@ -1,5 +1,6 @@
 "use client";
 
+import { FilterIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -11,11 +12,11 @@ import {
   ticketCategories,
   tourismCategories,
 } from "@/config/data";
-import type { TCategory } from "@/types";
+import type { TCategory, Tservices } from "@/types";
 export default function FilterCategories({
   itemType,
 }: {
-  itemType: "housing" | "restaurants" | "tourism" | "jobs" | "tickets";
+  itemType: Tservices;
 }) {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category") || "For you";
@@ -32,8 +33,8 @@ export default function FilterCategories({
     categories = ticketCategories;
   }
   return (
-    <div className="sticky top-10 z-10 h-fit w-full bg-background dark:bg-black">
-      <ScrollArea className="mx-auto w-[95vw]">
+    <div className="container flex w-full items-center justify-between gap-10">
+      <ScrollArea className="mx-auto min-w-[70vw]">
         <div className="flex gap-2 pt-4 pb-2">
           {categories.map((category) => {
             const isActive = activeCategory === category.label;
@@ -54,6 +55,11 @@ export default function FilterCategories({
         </div>
         <ScrollBar className="hidden" orientation="horizontal" />
       </ScrollArea>
+
+      <Button size={"sm"}>
+        <FilterIcon size={16} />
+        Filter
+      </Button>
     </div>
   );
 }

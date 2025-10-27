@@ -11,7 +11,6 @@ import {
   CameraIcon,
   Castle,
   Church,
-  CircleQuestionMarkIcon,
   CodeIcon,
   Coffee,
   Dog,
@@ -21,7 +20,6 @@ import {
   Fish,
   Gift,
   Globe2Icon,
-  GlobeIcon,
   GraduationCapIcon,
   HammerIcon,
   Handshake,
@@ -38,7 +36,6 @@ import {
   LifeBuoy,
   ListIcon,
   MapPin,
-  MapPinIcon,
   Martini,
   Mic2Icon,
   Monitor,
@@ -71,7 +68,6 @@ import {
   Umbrella,
   UserSquare2,
   Users,
-  UsersRoundIcon,
   Utensils,
   WalletIcon,
   Waves,
@@ -211,33 +207,7 @@ export const menuSections = [
   { label: "Company", items: company },
 ];
 
-export const navItems = [
-  {
-    label: "Middle East Africa",
-    icon: GlobeIcon,
-    title: "Choose Your Country",
-    description: "Explore different regions across Middle East & Africa.",
-  },
-  {
-    label: "Where to visit",
-    icon: MapPinIcon,
-    title: "Destinations",
-    description: "Find top places to visit, including cities and landmarks.",
-  },
-  {
-    label: "Become partner",
-    icon: UsersRoundIcon,
-    title: "Partnerships",
-    description: "Join us as a partner and grow your business with us.",
-  },
-  {
-    label: "Get help",
-    icon: CircleQuestionMarkIcon,
-    title: "Help & Support",
-    description: "Access our help center, FAQs, and customer support.",
-  },
-];
-export const adminNavItems: TnavItem[] = [
+export const navItems: TnavItem[] = [
   {
     label: "Explore",
     link: "/",

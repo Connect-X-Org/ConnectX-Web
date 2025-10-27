@@ -1,6 +1,8 @@
+import { BookmarkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { TRestaurant } from "@/types";
 
@@ -8,10 +10,12 @@ export default function RestaurantsGrid({
   restaurants,
   limit,
   className,
+  onHomepage = true,
 }: {
   restaurants: TRestaurant[];
   limit?: number;
   className?: string;
+  onHomepage?: boolean;
 }) {
   const slicedRestaurants = limit ? restaurants.slice(0, limit) : restaurants;
   return (
@@ -24,9 +28,9 @@ export default function RestaurantsGrid({
       {slicedRestaurants.map((restaurant, i) => (
         <Link
           className={cn(
-            "col-span-2 lg:col-span-1",
-            i === 0 && "lg:col-span-2",
-            i === 1 && "lg:col-span-2"
+            "group col-span-2 lg:col-span-1",
+            i === 0 && onHomepage && "lg:col-span-2",
+            i === 1 && onHomepage && "lg:col-span-2"
           )}
           href={`/restaurants/${restaurant.slug}`}
           key={restaurant.id}
@@ -40,6 +44,12 @@ export default function RestaurantsGrid({
                 src={restaurant.src}
               />
             </AspectRatio>
+            <Button
+              className="absolute top-1 right-1 hidden group-hover:flex"
+              size="icon-sm"
+            >
+              <BookmarkIcon />
+            </Button>
           </div>
 
           <div className="mt-1 flex flex-col gap-1">

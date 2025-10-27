@@ -1,7 +1,9 @@
 "use client";
+import { BookmarkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -31,7 +33,7 @@ export default function EventsGrid({
       )}
     >
       {slicedEvents.map((event, i) => (
-        <div className={cn("col-span-2 lg:col-span-1")} key={i}>
+        <div className={cn("group col-span-2 lg:col-span-1")} key={i}>
           <div className="group relative overflow-hidden">
             <Carousel
               opts={{
@@ -53,6 +55,12 @@ export default function EventsGrid({
                         />
                       </AspectRatio>
                     </Link>
+                    <Button
+                      className="absolute top-1 right-1 hidden group-hover:flex"
+                      size="icon-sm"
+                    >
+                      <BookmarkIcon />
+                    </Button>
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -67,8 +75,11 @@ export default function EventsGrid({
               </div>
             </Carousel>
           </div>
-          <Link href={`/housing/${event.slug}`}>
-            <div className="mt-2 flex flex-col gap-1">
+          <Link
+            className="mt-2 flex flex-col gap-2"
+            href={`/housing/${event.slug}`}
+          >
+            <div className="flex flex-col gap-1">
               <p className="text-muted-foreground text-xs uppercase">
                 {event.place.join(", ")}
               </p>
@@ -77,7 +88,7 @@ export default function EventsGrid({
                 <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50" />
               </div>
             </div>
-            <div className="mt-2 flex items-center gap-4 font-medium text-sm">
+            <div className="flex items-center gap-4 font-medium text-sm">
               <p>
                 <span className="text-muted-foreground">From</span>{" "}
                 <span className="font-medium">$40/person</span>

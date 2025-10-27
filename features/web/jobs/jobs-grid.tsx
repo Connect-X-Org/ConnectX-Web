@@ -27,7 +27,7 @@ export default function JobsGrid({
     >
       {slicedJobs.map((job, i) => (
         <Link
-          className={cn("col-span-2 lg:col-span-1")}
+          className={cn("group col-span-2 lg:col-span-1")}
           href={`/jobs/${job.slug}`}
           key={job.slug}
         >
@@ -40,7 +40,10 @@ export default function JobsGrid({
                 src={i % 2 === 0 ? img1 : img2}
               />
             </AspectRatio>
-            <Button className="absolute top-1 right-1" size="icon-sm">
+            <Button
+              className="absolute top-1 right-1 hidden group-hover:flex"
+              size="icon-sm"
+            >
               <BookmarkIcon />
             </Button>
             <div className="absolute bottom-1 left-1">
