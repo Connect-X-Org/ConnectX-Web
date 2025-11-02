@@ -15,6 +15,7 @@ import {
   PromptInputAttachments,
   PromptInputBody,
   PromptInputButton,
+  PromptInputFooter,
   type PromptInputMessage,
   PromptInputModelSelect,
   PromptInputModelSelectContent,
@@ -23,7 +24,6 @@ import {
   PromptInputModelSelectValue,
   PromptInputSubmit,
   PromptInputTextarea,
-  PromptInputToolbar,
   PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
 import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
@@ -119,16 +119,16 @@ const SuggestionsChat = ({
             <PromptInputTextarea
               autoFocus
               className="grow resize-none border-0! border-none! bg-transparent p-2 text-sm outline-none ring-0 [-ms-overflow-style:none] [scrollbar-width:none] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 md:text-[16px] [&::-webkit-scrollbar]:hidden"
-              disableAutoResize={true}
-              maxHeight={200}
-              minHeight={44}
+              // disableAutoResize={true}
+              // maxHeight={200}
+              // minHeight={44}
               onChange={(e) => setText(e.currentTarget.value)}
               placeholder="Ask CX Assistant"
               rows={1}
               value={text}
             />
           </PromptInputBody>
-          <PromptInputToolbar>
+          <PromptInputFooter>
             <PromptInputTools>
               <PromptInputActionMenu>
                 <PromptInputActionMenuTrigger />
@@ -176,7 +176,7 @@ const SuggestionsChat = ({
                 <ArrowUpIcon size={14} />
               </PromptInputSubmit>
             )}
-          </PromptInputToolbar>
+          </PromptInputFooter>
         </PromptInput>
       </div>
     </div>
