@@ -113,7 +113,7 @@ export default function ChatSection({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative mx-auto size-full h-screen max-w-4xl p-6",
+        "relative mx-auto size-full h-screen max-w-4xl p-2 md:p-4 lg:p-6",
         className
       )}
     >
