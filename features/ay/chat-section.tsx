@@ -55,6 +55,7 @@ import {
 import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
 import { cn } from "@/lib/utils";
 import { Greeting } from "../ai/greeting";
+import { suggestions } from "../ai/suggestions";
 
 const models = [
   {
@@ -65,18 +66,6 @@ const models = [
     name: "Deepseek R1",
     value: "deepseek/deepseek-r1",
   },
-];
-const suggestions = [
-  "Find the first ten places I can visit in the country",
-  "Book my hotel room",
-  "Show popular restaurants nearby",
-  "Find local guided tours",
-  "Check the weather forecast",
-  "Get a taxi or ride-hailing service",
-  "Find local events and festivals",
-  "Get tips for cultural etiquette",
-  "Find nearby pharmacies or hospitals",
-  "Rent a car or bike for sightseeing",
 ];
 
 export default function ChatSection({ className }: { className?: string }) {
@@ -113,7 +102,7 @@ export default function ChatSection({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative mx-auto size-full h-screen max-w-4xl p-2 md:p-4 lg:p-6",
+        "relative mx-auto size-full h-screen max-w-4xl p-2 md:p-4 lg:px-6",
         className
       )}
     >

@@ -10,11 +10,14 @@ import { type UIMessage, type UseChatHelpers, useChat } from "@ai-sdk/react";
 import { Presence } from "@radix-ui/react-presence";
 import { DefaultChatTransport } from "ai";
 import {
+  CopyIcon,
   InfoIcon,
-  Loader2,
   MaximizeIcon,
+  RefreshCcwIcon,
   SearchIcon,
-  Send,
+  ShareIcon,
+  ThumbsDownIcon,
+  ThumbsUpIcon,
   Trash2,
   X,
 } from "lucide-react";
@@ -22,7 +25,7 @@ import Link from "next/link";
 import {
   type ComponentProps,
   createContext,
-  type SyntheticEvent,
+  Fragment,
   use,
   useEffect,
   useMemo,
@@ -30,9 +33,41 @@ import {
   useState,
 } from "react";
 import { RemoveScroll } from "react-remove-scroll";
-import { MessageContent } from "@/components/ai-elements/message";
+import { Action, Actions } from "@/components/ai-elements/actions";
+import {
+  Conversation,
+  ConversationContent,
+  ConversationScrollButton,
+} from "@/components/ai-elements/conversation";
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+} from "@/components/ai-elements/message";
+import {
+  PromptInput,
+  PromptInputAttachment,
+  PromptInputAttachments,
+  PromptInputBody,
+  PromptInputFooter,
+  PromptInputHeader,
+  type PromptInputMessage,
+  PromptInputSubmit,
+  PromptInputTextarea,
+} from "@/components/ai-elements/prompt-input";
+import {
+  Reasoning,
+  ReasoningContent,
+  ReasoningTrigger,
+} from "@/components/ai-elements/reasoning";
 import { Response } from "@/components/ai-elements/response";
-// import Link from "fumadocs-core/link";
+import {
+  Source,
+  Sources,
+  SourcesContent,
+  SourcesTrigger,
+} from "@/components/ai-elements/sources";
+import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Popover,
@@ -40,10 +75,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { cn, sanitizeText } from "@/lib/utils";
-// import type { ProvideLinksToolSchema } from "@/lib/chat/inkeep-qa-schema";
-// import { Markdown } from "./markdown";
-import { MessageFeedback } from "./message-feedback";
+import { cn } from "@/lib/utils";
+import { Greeting } from "./greeting";
+import { suggestions } from "./suggestions";
 
 const Context = createContext<{
   open: boolean;
@@ -55,27 +89,11 @@ function useChatContext() {
   return use(Context)!.chat;
 }
 
-const suggestions = [
-  "Find the first ten places I can visit in the country",
-  "Book my hotel room",
-  "Show popular restaurants nearby",
-  "Find local guided tours",
-  "Check the weather forecast",
-  "Get a taxi or ride-hailing service",
-  "Find local events and festivals",
-];
-
-function SearchAIInput(props: ComponentProps<"form"> & { ismobile?: boolean }) {
-  const { status, sendMessage, stop, messages, setMessages } = useChatContext();
+function SearchAIInput() {
+  const { status, sendMessage, messages, setMessages } = useChatContext();
   const [input, setInput] = useState("");
   const isLoading = status === "streaming" || status === "submitted";
   const showSuggestions = messages.length === 0 && !isLoading;
-
-  const onStart = (e?: SyntheticEvent) => {
-    e?.preventDefault();
-    void sendMessage({ text: input });
-    setInput("");
-  };
 
   const handleSuggestionClick = (suggestion: string) => {
     void sendMessage({ text: suggestion });
@@ -85,155 +103,128 @@ function SearchAIInput(props: ComponentProps<"form"> & { ismobile?: boolean }) {
     setMessages([]);
     setInput("");
   };
+  const handleSubmit = (message: PromptInputMessage) => {
+    const hasText = Boolean(message.text);
+    const hasAttachments = Boolean(message.files?.length);
+
+    if (!(hasText || hasAttachments)) {
+      return;
+    }
+
+    sendMessage({
+      text: message.text || "Sent with attachments",
+      files: message.files,
+    });
+    setInput("");
+  };
 
   useEffect(() => {
     if (isLoading) document.getElementById("nd-ai-input")?.focus();
   }, [isLoading]);
 
   return (
-    <div
-      className={cn(
-        "relative m-[1px] flex flex-col rounded-lg border border-fd-border bg-fd-background shadow-2xl shadow-fd-background",
-        isLoading ? "opacity-50" : ""
+    <>
+      {showSuggestions && (
+        <Suggestions className="mb-2">
+          {suggestions.map((suggestion) => (
+            <Suggestion
+              key={suggestion}
+              onClick={handleSuggestionClick}
+              suggestion={suggestion}
+            />
+          ))}
+        </Suggestions>
       )}
-    >
-      <form
-        {...props}
-        className={cn("flex items-start pe-2", props.className)}
-        onSubmit={onStart}
-      >
-        <Input
-          autoFocus
-          className={cn("p-4", "sm:text-sm")}
-          disabled={status === "streaming" || status === "submitted"}
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-          onKeyDown={(event) => {
-            if (!event.shiftKey && event.key === "Enter") {
-              onStart(event);
-            }
-          }}
-          placeholder={isLoading ? "answering..." : "Ask CX Assistant"}
-          value={input}
-        />
-        {isLoading ? (
-          <button
-            className={cn(
-              buttonVariants({
-                variant: "secondary",
-                className: "mt-2 gap-2 rounded-full transition-all",
-              })
-            )}
-            key="bn"
-            onClick={stop}
-            type="button"
-          >
-            <Loader2 className="size-4 animate-spin text-fd-muted-foreground" />
-          </button>
-        ) : (
-          <button
-            className={cn(
-              buttonVariants({
-                variant: "secondary",
-                className: "mt-2 rounded-full transition-all",
-              })
-            )}
-            disabled={input.length === 0}
-            key="bn"
-            type="submit"
-          >
-            <Send className="size-4" />
-          </button>
+      <div
+        className={cn(
+          "relative m-[1px] flex flex-col rounded-lg border border-fd-border bg-fd-background shadow-2xl shadow-fd-background",
+          isLoading ? "opacity-50" : ""
         )}
-      </form>
-
-      {showSuggestions && (
-        <div className={cn("mt-3", props.ismobile ? "px-3" : "px-4")}>
-          <p className="mb-2 font-medium text-fd-muted-foreground text-xs">
-            Try asking:
-          </p>
-          <div
-            className={cn(
-              "flex gap-2",
-              props.ismobile
-                ? "-mx-3 overflow-x-auto px-3 pb-2 [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_1rem,black_calc(100%-1rem),transparent_100%)] [mask-image:linear-gradient(to_right,transparent_0%,black_1rem,black_calc(100%-1rem),transparent_100%)]"
-                : "flex-wrap"
-            )}
-          >
-            {suggestions.slice(0, 4).map((suggestion, i) => (
-              <button
-                className={cn(
-                  "rounded-full border border-fd-border/50 bg-fd-muted/30 text-left text-fd-muted-foreground transition-all duration-200 hover:border-fd-border hover:bg-fd-muted/50 hover:text-fd-foreground",
-                  props.ismobile
-                    ? "flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs"
-                    : "px-3 py-1.5 text-xs"
-                )}
-                key={i}
-                onClick={() => handleSuggestionClick(suggestion)}
-                type="button"
-              >
-                {suggestion}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-      {showSuggestions && (
-        <div className="relative mt-2 flex items-center gap-1 border-t bg-fd-accent/40 px-4 py-2 text-fd-muted-foreground text-xs">
-          <div className="flex flex-1 items-center gap-1">
-            Powered by{" "}
-            <Link
-              className="text-fd-primary hover:text-fd-primary/80 hover:underline"
-              href="https://rathon-rw.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Rathon
-            </Link>
-            <span className="hidden sm:inline">
-              AI can be inaccurate, please verify the information.
-            </span>
-          </div>
-          <Popover>
-            <PopoverTrigger asChild>
-              <button
-                aria-label="Show information"
-                className="rounded transition-colors hover:bg-fd-accent/50 sm:hidden"
-                type="button"
-              >
-                <InfoIcon className="size-3.5" />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent
-              align="end"
-              className="w-auto max-w-44 text-pretty p-2 text-xs"
-              side="top"
-            >
-              AI can be inaccurate, please verify the information.
-            </PopoverContent>
-          </Popover>
-        </div>
-      )}
-      {!showSuggestions && (
-        <div className="mt-2 flex cursor-pointer items-center gap-1 border-t bg-fd-accent/40 px-4 py-2 text-fd-muted-foreground text-xs">
-          <button
-            aria-disabled={isLoading}
-            className="flex items-center gap-1 transition-all duration-200 empty:hidden hover:text-fd-foreground aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
-            onClick={() => {
-              if (!isLoading) {
-                handleClear();
+      >
+        <PromptInput
+          autoFocus
+          className="flex"
+          globalDrop
+          multiple
+          onSubmit={handleSubmit}
+        >
+          <PromptInputHeader>
+            <PromptInputAttachments>
+              {(attachment) => <PromptInputAttachment data={attachment} />}
+            </PromptInputAttachments>
+          </PromptInputHeader>
+          <PromptInputBody>
+            <PromptInputTextarea
+              onChange={(e) => setInput(e.target.value)}
+              placeholder={
+                isLoading ? "answering..." : "Looking for services or places ?"
               }
-            }}
-            tabIndex={0}
-            type="button"
-          >
-            <Trash2 className="size-3" />
-            <p>Clear</p>
-          </button>
-        </div>
-      )}
-    </div>
+              value={input}
+            />
+          </PromptInputBody>
+          <PromptInputFooter className="flex justify-end">
+            {!showSuggestions && (
+              <button
+                aria-disabled={isLoading}
+                className="flex cursor-pointer items-center gap-1 text-muted-foreground transition-all duration-200 empty:hidden hover:text-primary aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+                onClick={() => {
+                  if (!isLoading) {
+                    handleClear();
+                  }
+                }}
+                tabIndex={0}
+                type="button"
+              >
+                <Trash2 className="size-3" />
+                <p>Clear</p>
+              </button>
+            )}
+            <PromptInputSubmit
+              disabled={input.length === 0 || !status}
+              status={status}
+              variant={"secondary"}
+            />
+          </PromptInputFooter>
+        </PromptInput>
+
+        {showSuggestions && (
+          <div className="relative flex items-center gap-1 border-t bg-fd-accent/40 px-4 py-2 text-fd-muted-foreground text-xs">
+            <div className="flex flex-1 items-center gap-1">
+              Powered by{" "}
+              <Link
+                className="text-fd-primary hover:text-fd-primary/80 hover:underline"
+                href="https://rathon-rw.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Rathon
+              </Link>
+              <span className="hidden sm:inline">
+                AI can be inaccurate, please verify the information.
+              </span>
+            </div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  aria-label="Show information"
+                  className="rounded transition-colors hover:bg-fd-accent/50 sm:hidden"
+                  type="button"
+                >
+                  <InfoIcon className="size-3.5" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent
+                align="end"
+                className="w-auto max-w-44 text-pretty p-2 text-xs"
+                side="top"
+              >
+                AI can be inaccurate, please verify the information.
+              </PopoverContent>
+            </Popover>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -319,32 +310,6 @@ function List(
   );
 }
 
-function Input(props: ComponentProps<"textarea">) {
-  const ref = useRef<HTMLDivElement>(null);
-  const shared = cn("col-start-1 row-start-1", props.className);
-
-  return (
-    <div className="grid flex-1">
-      <textarea
-        id="nd-ai-input"
-        {...props}
-        className={cn(
-          "resize-none bg-transparent placeholder:text-fd-muted-foreground focus-visible:outline-none",
-          shared
-        )}
-      />
-      <div className={cn(shared, "invisible break-all")} ref={ref}>
-        {`${props.value?.toString() ?? ""}\n`}
-      </div>
-    </div>
-  );
-}
-
-const roleName: Record<string, string> = {
-  user: "you",
-  assistant: "CX Assistant",
-};
-
 function ThinkingIndicator() {
   return (
     <div className="flex flex-col">
@@ -362,97 +327,6 @@ function ThinkingIndicator() {
   );
 }
 
-function Message({
-  message,
-  messages,
-  messageIndex,
-  isStreaming,
-  ...props
-}: {
-  message: UIMessage;
-  messages?: UIMessage[];
-  messageIndex?: number;
-  isStreaming?: boolean;
-} & ComponentProps<"div">) {
-  let markdown = "";
-  //   let links: z.infer<typeof ProvideLinksToolSchema>["links"] = [];
-
-  for (const part of message.parts ?? []) {
-    if (part.type === "text") {
-      const textWithCitations = part.text.replace(/\((\d+)\)/g, "");
-      markdown += textWithCitations;
-      //   continue;
-    }
-
-    // if (part.type === "tool-provideLinks" && part.input) {
-    //   links = (part.input as z.infer<typeof ProvideLinksToolSchema>).links;
-    // }
-  }
-
-  // Fix incomplete code blocks for better rendering during streaming
-  const codeBlockCount = (markdown.match(/```/g) || []).length;
-  if (codeBlockCount % 2 !== 0) {
-    // Odd number of ``` means there's an unclosed code block
-    markdown += "\n```";
-  }
-
-  // Ensure proper spacing around code blocks
-  markdown = markdown
-    .replace(/```(\w+)?\n/g, "\n```$1\n")
-    .replace(/\n```\n/g, "\n```\n\n");
-
-  return (
-    <div {...props}>
-      <p
-        className={cn(
-          "mb-1 font-medium text-fd-muted-foreground text-sm",
-          message.role === "assistant" && "text-fd-primary"
-        )}
-      >
-        {roleName[message.role] ?? "unknown"}
-      </p>
-      {/* <div className="prose text-sm">
-        <p>{markdown}</p>
-      </div> */}
-      <MessageContent data-testid="message-content">
-        <Response>{sanitizeText(markdown)}</Response>
-      </MessageContent>
-      {/* {links && links.length > 0 && (
-        <div className="mt-3 flex flex-col gap-2">
-          <p className="font-medium text-fd-muted-foreground text-xs">
-            References:
-          </p>
-          <div className="flex flex-col gap-1">
-            {links.map((item, i) => (
-              <Link
-                className="flex items-center gap-2 rounded-lg border p-2 text-xs transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground"
-                href={item.url}
-                key={i}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <span className="truncate">{item.title || item.label}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )} */}
-      {message.role === "assistant" && message.id && !isStreaming && (
-        <MessageFeedback
-          className="opacity-100 transition-opacity"
-          content={markdown}
-          //   messageId={message.id}
-          //   userMessageId={
-          //     messages && messageIndex !== undefined && messageIndex > 0
-          //       ? messages[messageIndex - 1]?.id
-          //       : undefined
-          //   }
-        />
-      )}
-    </div>
-  );
-}
-
 export function AISearchTrigger() {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -462,9 +336,6 @@ export function AISearchTrigger() {
       api: "/api/chat",
     }),
   });
-
-  //   const showSuggestions =
-  //     chat.messages.length === 0 && chat.status !== "streaming";
 
   const onKeyPress = (e: KeyboardEvent) => {
     if (e.key === "Escape" && open) {
@@ -539,7 +410,7 @@ export function AISearchTrigger() {
                 "overscroll-contain",
                 isMobile
                   ? "w-full px-2 pt-6 pb-28"
-                  : "w-[min(800px,90vw)] py-10 pr-2"
+                  : "w-[min(800px,90vw)] py-4 pr-2"
               )}
               messageCount={chat.messages.length}
               style={{
@@ -548,32 +419,121 @@ export function AISearchTrigger() {
                   : "linear-gradient(to bottom, transparent, white 4rem, white calc(100% - 2rem), transparent 100%)",
               }}
             >
-              <div className="flex flex-col gap-4">
-                {chat.messages
-                  .filter((msg: UIMessage) => msg.role !== "system")
-                  .map((item: UIMessage, index: number) => {
-                    const filteredMessages = chat.messages.filter(
-                      (msg: UIMessage) => msg.role !== "system"
-                    );
-                    const isLastMessage = index === filteredMessages.length - 1;
-                    const isCurrentlyStreaming =
-                      (chat.status === "streaming" ||
-                        chat.status === "submitted") &&
-                      item.role === "assistant" &&
-                      isLastMessage;
-
-                    return (
-                      <Message
-                        isStreaming={isCurrentlyStreaming}
-                        key={item.id}
-                        message={item}
-                        messageIndex={index}
-                        messages={filteredMessages}
-                      />
-                    );
-                  })}
-                {chat.status === "submitted" && <ThinkingIndicator />}
-              </div>
+              <Conversation className="flex flex-col gap-4">
+                <ConversationContent>
+                  {chat.messages.length === 0 && <Greeting />}
+                  {chat.messages.map((message) => (
+                    <div key={message.id}>
+                      {message.role === "assistant" &&
+                        message.parts.filter(
+                          (part) => part.type === "source-url"
+                        ).length > 0 && (
+                          <Sources>
+                            <SourcesTrigger
+                              count={
+                                message.parts.filter(
+                                  (part) => part.type === "source-url"
+                                ).length
+                              }
+                            />
+                            {message.parts
+                              .filter((part) => part.type === "source-url")
+                              .map((part, i) => (
+                                <SourcesContent key={`${message.id}-${i}`}>
+                                  <Source
+                                    href={part.url}
+                                    key={`${message.id}-${i}`}
+                                    title={part.url}
+                                  />
+                                </SourcesContent>
+                              ))}
+                          </Sources>
+                        )}
+                      {message.parts.map((part, i) => {
+                        switch (part.type) {
+                          case "text":
+                            return (
+                              <Fragment key={`${message.id}-${i}`}>
+                                <Message from={message.role}>
+                                  <MessageContent variant={"flat"}>
+                                    <Response>{part.text}</Response>
+                                  </MessageContent>
+                                  <MessageAvatar
+                                    name={
+                                      message.role === "user" ? "Leo" : "CX"
+                                    }
+                                    src={
+                                      message.role === "user"
+                                        ? "https://github.com/leconstantin.png"
+                                        : "/gradients_10.jpg"
+                                    }
+                                  />
+                                </Message>
+                                {message.role === "assistant" && (
+                                  <Actions>
+                                    <Action
+                                      className="hover:bg-transparent"
+                                      label="Retry"
+                                      onClick={() => chat.regenerate}
+                                    >
+                                      <RefreshCcwIcon className="size-4" />
+                                    </Action>
+                                    <Action
+                                      className="hover:bg-transparent"
+                                      label="Like"
+                                    >
+                                      <ThumbsUpIcon className="size-4" />
+                                    </Action>
+                                    <Action
+                                      className="hover:bg-transparent"
+                                      label="Dislike"
+                                    >
+                                      <ThumbsDownIcon className="size-4" />
+                                    </Action>
+                                    <Action
+                                      className="hover:bg-transparent"
+                                      label="Share"
+                                    >
+                                      <ShareIcon className="size-4" />
+                                    </Action>
+                                    <Action
+                                      className="hover:bg-transparent"
+                                      label="Copy"
+                                      onClick={() =>
+                                        navigator.clipboard.writeText(part.text)
+                                      }
+                                    >
+                                      <CopyIcon className="size-4" />
+                                    </Action>
+                                  </Actions>
+                                )}
+                              </Fragment>
+                            );
+                          case "reasoning":
+                            return (
+                              <Reasoning
+                                className="w-full"
+                                isStreaming={
+                                  chat.status === "streaming" &&
+                                  i === message.parts.length - 1 &&
+                                  message.id === chat.messages.at(-1)?.id
+                                }
+                                key={`${message.id}-${i}`}
+                              >
+                                <ReasoningTrigger />
+                                <ReasoningContent>{part.text}</ReasoningContent>
+                              </Reasoning>
+                            );
+                          default:
+                            return null;
+                        }
+                      })}
+                    </div>
+                  ))}
+                  {chat.status === "submitted" && <ThinkingIndicator />}
+                </ConversationContent>
+                <ConversationScrollButton />
+              </Conversation>
             </List>
           </div>
         </Presence>
@@ -611,7 +571,7 @@ export function AISearchTrigger() {
           )}
           {open && (
             <div className="flex flex-col">
-              <SearchAIInput ismobile={isMobile} />
+              <SearchAIInput />
             </div>
           )}
         </div>
