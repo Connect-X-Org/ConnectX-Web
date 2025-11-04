@@ -46,8 +46,8 @@ export const mockRestaurants: TmockRestaurant[] = [
   },
   {
     id: "5",
-    title: "The Hut",
-    slug: "the-hut",
+    title: "La Creola",
+    slug: "la-creola",
     place: "Remera, Kigali",
     src: "/restaurant/image-5.avif",
     description: "Traditional Rwandan cuisine",
@@ -55,41 +55,11 @@ export const mockRestaurants: TmockRestaurant[] = [
   },
   {
     id: "6",
-    title: "Poivre Noir",
-    slug: "poivre-noir",
-    place: "Kigali Heights",
+    title: "Chez Lando",
+    slug: "chez-lando",
+    place: "Kigali Gishushu",
     src: "/restaurant/image-6.avif",
     description: "Elegant French cuisine",
     cuisine: "French",
-  },
-];
-
-export const mockPlaces = [
-  {
-    id: "1",
-    title: "Kigali Serena Hotel",
-    slug: "kigali-serena-hotel",
-    place: "Kigali City Center",
-    src: "/images/serena-hotel.jpg",
-    description: "5-star luxury hotel in the heart of Kigali",
-    type: "hotel",
-  },
-  {
-    id: "2",
-    title: "Volcanoes National Park",
-    slug: "volcanoes-national-park",
-    place: "Musanze",
-    src: "/images/volcanoes-park.jpg",
-    description: "Home to mountain gorillas and golden monkeys",
-    type: "attraction",
-  },
-  {
-    id: "3",
-    title: "Kigali Genocide Memorial",
-    slug: "genocide-memorial",
-    place: "Gisozi, Kigali",
-    src: "/images/memorial.jpg",
-    description: "Historic memorial and museum",
-    type: "attraction",
   },
 ];

@@ -7,8 +7,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 import { CarouselDots } from "@/features/web/_shared/carousel-dots";
@@ -34,7 +32,7 @@ export default function ChatHouseCard({
           <CarouselContent>
             {[house.src, ...house.otherImages].map((image) => (
               <CarouselItem className="bg-muted" key={image}>
-                <Link href={`/housing/${house.slug}`}>
+                <Link href={`/housing/${house.slug}`} target="_blank">
                   <AspectRatio ratio={16 / 9}>
                     <Image
                       alt={house.title}
@@ -58,6 +56,7 @@ export default function ChatHouseCard({
       <Link
         className="mt-2 flex flex-col gap-2"
         href={`/housing/${house.slug}`}
+        target="_blank"
       >
         <div className="flex flex-col gap-1">
           <p className="text-muted-foreground text-xs uppercase">

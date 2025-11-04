@@ -16,6 +16,7 @@ export default function ChatPlaceCard({
       className={cn("group col-span-2 lg:col-span-1", className)}
       href={`/tourism/${place.slug}`}
       key={place.id}
+      target="_blank"
     >
       <AspectRatio
         className="overflow-hidden rounded-sm bg-muted"

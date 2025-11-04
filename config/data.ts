@@ -666,8 +666,8 @@ export const restaurants: TRestaurant[] = [
     id: 1,
     src: "/restaurant/image-1.avif",
     place: "Kigali",
-    title: "BOHO Restaurant",
-    slug: "boho-restaurant",
+    title: "Heaven Restaurant",
+    slug: "heaven-restaurant",
     href: "https://www.boho.rw/",
     description:
       "BOHO is a stylish rooftop restaurant in Kimihurura that combines Afro-fusion cuisine with contemporary dining. Guests enjoy an elegant menu inspired by local Rwandan ingredients, creative cocktails, and vibrant cultural influences, all while overlooking breathtaking views of Kigali's skyline.",
@@ -696,8 +696,8 @@ export const restaurants: TRestaurant[] = [
     id: 2,
     src: "/restaurant/image-2.avif",
     place: "Kigali",
-    title: "Meza Malonga",
-    slug: "meza-malonga",
+    title: "Repub Lounge",
+    slug: "repub-lounge",
     href: "#",
     description:
       "Led by Chef Dieuveil Malonga, Meza Malonga offers a fine-dining journey that fuses Rwandan flavors with global culinary artistry. Each dish is carefully crafted to highlight African heritage, seasonal produce, and innovative techniques, making the restaurant one of Kigali’s most celebrated dining destinations. The space is intimate and creative, appealing to adventurous food lovers who want to explore Africa’s evolving gastronomy scene.",
@@ -726,8 +726,8 @@ export const restaurants: TRestaurant[] = [
     id: 3,
     src: "/restaurant/image-3.avif",
     place: "Kigali",
-    title: "Inka Steakhouse",
-    slug: "inka-steakhouse",
+    title: "Khana Khazana",
+    slug: "khana-khazana",
     href: "#",
     description:
       "Premium steakhouse emphasizing Rwandan beef and a refined atmosphere.",
@@ -756,8 +756,8 @@ export const restaurants: TRestaurant[] = [
     id: 4,
     src: "/restaurant/image-4.avif",
     place: "Kigali",
-    title: "Heaven Restaurant",
-    slug: "heaven-restaurant",
+    title: "Zaaffran",
+    slug: "zaaffran",
     href: "#",
     description:
       "Open-air terrace restaurant and training center for Rwandan culinary talent.",

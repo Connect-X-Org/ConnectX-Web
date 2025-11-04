@@ -16,6 +16,7 @@ export default function ChatRestaurantCard({
       className={cn("group col-span-2 lg:col-span-1", className)}
       href={`/restaurants/${restaurant.slug}`}
       key={restaurant.id}
+      target="_blank"
     >
       <div className="relative overflow-hidden rounded-sm">
         <AspectRatio className="bg-muted" ratio={16 / 9}>

@@ -6,11 +6,12 @@
 /** biome-ignore-all lint/a11y/noStaticElementInteractions: <explanation> */
 "use client";
 
-import { type UIMessage, type UseChatHelpers, useChat } from "@ai-sdk/react";
+import { type UseChatHelpers, useChat } from "@ai-sdk/react";
 import { Presence } from "@radix-ui/react-presence";
 import { DefaultChatTransport } from "ai";
 import {
   CopyIcon,
+  GlobeIcon,
   InfoIcon,
   MaximizeIcon,
   RefreshCcwIcon,
@@ -18,7 +19,7 @@ import {
   ShareIcon,
   ThumbsDownIcon,
   ThumbsUpIcon,
-  Trash2,
+  TrashIcon,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -33,27 +34,31 @@ import {
   useState,
 } from "react";
 import { RemoveScroll } from "react-remove-scroll";
+import type { ChatMessage } from "@/app/api/chat/route";
 import { Action, Actions } from "@/components/ai-elements/actions";
 import {
   Conversation,
   ConversationContent,
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
-import {
-  Message,
-  MessageAvatar,
-  MessageContent,
-} from "@/components/ai-elements/message";
+import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
+  PromptInputActionAddAttachments,
+  PromptInputActionMenu,
+  PromptInputActionMenuContent,
+  PromptInputActionMenuTrigger,
   PromptInputAttachment,
   PromptInputAttachments,
   PromptInputBody,
+  PromptInputButton,
   PromptInputFooter,
   PromptInputHeader,
   type PromptInputMessage,
+  PromptInputSpeechButton,
   PromptInputSubmit,
   PromptInputTextarea,
+  PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
 import {
   Reasoning,
@@ -78,11 +83,16 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Greeting } from "./greeting";
 import { suggestions } from "./suggestions";
+import { ThinkingIndicator } from "./thinking";
+import ChatHouseCards from "./tools/chat-house-cards";
+import ChatPlaceCards from "./tools/chat-place-cards";
+import ChatRestCards from "./tools/chat-rest-cards";
+import SingleRestaurant from "./tools/single-restaurant";
 
 const Context = createContext<{
   open: boolean;
   setOpen: (open: boolean) => void;
-  chat: UseChatHelpers<UIMessage>;
+  chat: UseChatHelpers<ChatMessage>;
 } | null>(null);
 
 function useChatContext() {
@@ -92,6 +102,7 @@ function useChatContext() {
 function SearchAIInput() {
   const { status, sendMessage, messages, setMessages } = useChatContext();
   const [input, setInput] = useState("");
+  const [webSearch, setWebSearch] = useState(false);
   const isLoading = status === "streaming" || status === "submitted";
   const showSuggestions = messages.length === 0 && !isLoading;
 
@@ -162,23 +173,38 @@ function SearchAIInput() {
               value={input}
             />
           </PromptInputBody>
-          <PromptInputFooter className="flex justify-end">
-            {!showSuggestions && (
-              <button
-                aria-disabled={isLoading}
-                className="flex cursor-pointer items-center gap-1 text-muted-foreground transition-all duration-200 empty:hidden hover:text-primary aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
-                onClick={() => {
-                  if (!isLoading) {
-                    handleClear();
-                  }
-                }}
-                tabIndex={0}
-                type="button"
+          <PromptInputFooter className="flex">
+            <PromptInputTools>
+              <PromptInputActionMenu>
+                <PromptInputActionMenuTrigger />
+                <PromptInputActionMenuContent>
+                  <PromptInputActionAddAttachments />
+                </PromptInputActionMenuContent>
+              </PromptInputActionMenu>
+              <PromptInputButton
+                onClick={() => setWebSearch(!webSearch)}
+                variant={webSearch ? "default" : "ghost"}
               >
-                <Trash2 className="size-3" />
-                <p>Clear</p>
-              </button>
-            )}
+                <GlobeIcon size={16} />
+                <span>Search</span>
+              </PromptInputButton>
+
+              <PromptInputSpeechButton />
+              {messages.length > 1 && (
+                <PromptInputButton
+                  onClick={() => {
+                    if (!isLoading) {
+                      handleClear();
+                    }
+                  }}
+                  variant={"ghost"}
+                >
+                  <TrashIcon size={16} />
+                  <span>Clear</span>
+                </PromptInputButton>
+              )}
+            </PromptInputTools>
+
             <PromptInputSubmit
               disabled={input.length === 0 || !status}
               status={status}
@@ -310,33 +336,16 @@ function List(
   );
 }
 
-function ThinkingIndicator() {
-  return (
-    <div className="flex flex-col">
-      <p className="mb-1 font-medium text-fd-muted-foreground text-sm">
-        CX Assistant
-      </p>
-      <div className="flex items-end gap-1 text-fd-muted-foreground text-sm">
-        <div className="flex items-center gap-1 opacity-70">
-          <span className="inline-block size-1 animate-bounce rounded-full bg-fd-primary [animation-delay:0ms]" />
-          <span className="inline-block size-1 animate-bounce rounded-full bg-fd-primary opacity-80 [animation-delay:150ms]" />
-          <span className="inline-block size-1 animate-bounce rounded-full bg-fd-primary [animation-delay:300ms]" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function AISearchTrigger() {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
-  const chat = useChat({
+  const chat = useChat<ChatMessage>({
     id: "search",
     transport: new DefaultChatTransport({
       api: "/api/chat",
     }),
   });
-
+  const { messages, status } = chat;
   const onKeyPress = (e: KeyboardEvent) => {
     if (e.key === "Escape" && open) {
       setOpen(false);
@@ -421,8 +430,8 @@ export function AISearchTrigger() {
             >
               <Conversation className="flex flex-col gap-4">
                 <ConversationContent>
-                  {chat.messages.length === 0 && <Greeting />}
-                  {chat.messages.map((message) => (
+                  {messages.length === 0 && <Greeting />}
+                  {messages.map((message) => (
                     <div key={message.id}>
                       {message.role === "assistant" &&
                         message.parts.filter(
@@ -449,6 +458,7 @@ export function AISearchTrigger() {
                               ))}
                           </Sources>
                         )}
+
                       {message.parts.map((part, i) => {
                         switch (part.type) {
                           case "text":
@@ -458,46 +468,25 @@ export function AISearchTrigger() {
                                   <MessageContent variant={"flat"}>
                                     <Response>{part.text}</Response>
                                   </MessageContent>
-                                  <MessageAvatar
-                                    name={
-                                      message.role === "user" ? "Leo" : "CX"
-                                    }
-                                    src={
-                                      message.role === "user"
-                                        ? "https://github.com/leconstantin.png"
-                                        : "/gradients_10.jpg"
-                                    }
-                                  />
                                 </Message>
                                 {message.role === "assistant" && (
                                   <Actions>
                                     <Action
-                                      className="hover:bg-transparent"
                                       label="Retry"
-                                      onClick={() => chat.regenerate}
+                                      onClick={() => regenerate()}
                                     >
                                       <RefreshCcwIcon className="size-4" />
                                     </Action>
-                                    <Action
-                                      className="hover:bg-transparent"
-                                      label="Like"
-                                    >
+                                    <Action label="Like">
                                       <ThumbsUpIcon className="size-4" />
                                     </Action>
-                                    <Action
-                                      className="hover:bg-transparent"
-                                      label="Dislike"
-                                    >
+                                    <Action label="Dislike">
                                       <ThumbsDownIcon className="size-4" />
                                     </Action>
-                                    <Action
-                                      className="hover:bg-transparent"
-                                      label="Share"
-                                    >
+                                    <Action label="Share">
                                       <ShareIcon className="size-4" />
                                     </Action>
                                     <Action
-                                      className="hover:bg-transparent"
                                       label="Copy"
                                       onClick={() =>
                                         navigator.clipboard.writeText(part.text)
@@ -509,14 +498,78 @@ export function AISearchTrigger() {
                                 )}
                               </Fragment>
                             );
+                          case "tool-showRestaurants":
+                            return (
+                              <Fragment key={`${message.id}-${i}`}>
+                                <Message
+                                  className="flex flex-col"
+                                  from={message.role}
+                                >
+                                  <Response>{part.output?.message}</Response>
+                                  {part.output?.restaurants && (
+                                    <ChatRestCards
+                                      restaurants={part.output.restaurants}
+                                    />
+                                  )}
+                                </Message>
+                              </Fragment>
+                            );
+                          case "tool-showRestaurant":
+                            return (
+                              <Fragment key={`${message.id}-${i}`}>
+                                <Message
+                                  className="flex flex-col"
+                                  from={message.role}
+                                >
+                                  <Response>{part.output?.message}</Response>
+                                  {part.output?.restaurant && (
+                                    <SingleRestaurant
+                                      restaurant={part.output.restaurant}
+                                    />
+                                  )}
+                                </Message>
+                              </Fragment>
+                            );
+                          case "tool-showPlaces":
+                            return (
+                              <Fragment key={`${message.id}-${i}`}>
+                                <Message
+                                  className="flex flex-col"
+                                  from={message.role}
+                                >
+                                  <Response>{part.output?.message}</Response>
+                                  {part.output?.places && (
+                                    <ChatPlaceCards
+                                      places={part.output.places}
+                                    />
+                                  )}
+                                </Message>
+                              </Fragment>
+                            );
+                          case "tool-showHouses":
+                            return (
+                              <Fragment key={`${message.id}-${i}`}>
+                                <Message
+                                  className="flex flex-col"
+                                  from={message.role}
+                                >
+                                  <Response>{part.output?.message}</Response>
+                                  {part.output?.houses && (
+                                    <ChatHouseCards
+                                      houses={part.output.houses}
+                                    />
+                                  )}
+                                </Message>
+                              </Fragment>
+                            );
                           case "reasoning":
                             return (
                               <Reasoning
                                 className="w-full"
                                 isStreaming={
-                                  chat.status === "streaming" &&
+                                  status === "streaming" &&
                                   i === message.parts.length - 1 &&
-                                  message.id === chat.messages.at(-1)?.id
+                                  message.id === messages.at(-1)?.id
                                 }
                                 key={`${message.id}-${i}`}
                               >
@@ -530,7 +583,7 @@ export function AISearchTrigger() {
                       })}
                     </div>
                   ))}
-                  {chat.status === "submitted" && <ThinkingIndicator />}
+                  {status === "submitted" && <ThinkingIndicator />}
                 </ConversationContent>
                 <ConversationScrollButton />
               </Conversation>

@@ -8,6 +8,7 @@ import {
   ShareIcon,
   ThumbsDownIcon,
   ThumbsUpIcon,
+  TrashIcon,
 } from "lucide-react";
 import { Fragment, useState } from "react";
 import type { ChatMessage } from "@/app/api/chat/route";
@@ -17,7 +18,6 @@ import {
   ConversationContent,
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
-import { Loader } from "@/components/ai-elements/loader";
 import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
@@ -32,11 +32,7 @@ import {
   PromptInputFooter,
   PromptInputHeader,
   type PromptInputMessage,
-  PromptInputModelSelect,
-  PromptInputModelSelectContent,
-  PromptInputModelSelectItem,
-  PromptInputModelSelectTrigger,
-  PromptInputModelSelectValue,
+  PromptInputSpeechButton,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputTools,
@@ -57,27 +53,17 @@ import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
 import { cn } from "@/lib/utils";
 import { Greeting } from "./greeting";
 import { suggestions } from "./suggestions";
+import { ThinkingIndicator } from "./thinking";
 import ChatHouseCards from "./tools/chat-house-cards";
 import ChatPlaceCards from "./tools/chat-place-cards";
 import ChatRestCards from "./tools/chat-rest-cards";
 import SingleRestaurant from "./tools/single-restaurant";
 
-const models = [
-  {
-    name: "GPT 4o",
-    value: "openai/gpt-4o",
-  },
-  {
-    name: "Deepseek R1",
-    value: "deepseek/deepseek-r1",
-  },
-];
-
 export default function ChatSection({ className }: { className?: string }) {
   const [input, setInput] = useState("");
-  const [model, setModel] = useState<string>(models[0].value);
   const [webSearch, setWebSearch] = useState(false);
-  const { messages, sendMessage, status, regenerate } = useChat<ChatMessage>();
+  const { messages, setMessages, sendMessage, status, regenerate } =
+    useChat<ChatMessage>();
 
   const handleSubmit = (message: PromptInputMessage) => {
     const hasText = Boolean(message.text);
@@ -94,7 +80,6 @@ export default function ChatSection({ className }: { className?: string }) {
       },
       {
         body: {
-          model,
           webSearch,
         },
       }
@@ -103,6 +88,10 @@ export default function ChatSection({ className }: { className?: string }) {
   };
   const handleSuggestionClick = (suggestion: string) => {
     setInput(suggestion);
+  };
+  const handleClear = () => {
+    setMessages([]);
+    setInput("");
   };
   return (
     <div
@@ -115,7 +104,6 @@ export default function ChatSection({ className }: { className?: string }) {
         <Conversation className="h-full">
           <ConversationContent>
             {messages.length === 0 && <Greeting />}
-            {/* <SingleRestaurant restaurant={mockRestaurants[0]} /> */}
 
             {messages.map((message) => (
               <div key={message.id}>
@@ -143,6 +131,7 @@ export default function ChatSection({ className }: { className?: string }) {
                         ))}
                     </Sources>
                   )}
+
                 {message.parts.map((part, i) => {
                   switch (part.type) {
                     case "text":
@@ -263,8 +252,7 @@ export default function ChatSection({ className }: { className?: string }) {
                 })}
               </div>
             ))}
-            {/* <AiRestaurantsGrid restaurants={restaurants} /> */}
-            {status === "submitted" && <Loader />}
+            {status === "submitted" && <ThinkingIndicator />}
           </ConversationContent>
           <ConversationScrollButton />
         </Conversation>
@@ -295,7 +283,7 @@ export default function ChatSection({ className }: { className?: string }) {
             <PromptInputBody>
               <PromptInputTextarea
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="How can we make your day great ?"
+                placeholder="Looking for a place to eat, stay, or visit?"
                 value={input}
               />
             </PromptInputBody>
@@ -314,30 +302,19 @@ export default function ChatSection({ className }: { className?: string }) {
                   <GlobeIcon size={16} />
                   <span>Search</span>
                 </PromptInputButton>
-                <PromptInputModelSelect
-                  onValueChange={(value) => {
-                    setModel(value);
-                  }}
-                  value={model}
-                >
-                  <PromptInputModelSelectTrigger>
-                    <PromptInputModelSelectValue />
-                  </PromptInputModelSelectTrigger>
-                  <PromptInputModelSelectContent>
-                    {models.map((modl) => (
-                      <PromptInputModelSelectItem
-                        key={modl.value}
-                        value={modl.value}
-                      >
-                        {modl.name}
-                      </PromptInputModelSelectItem>
-                    ))}
-                  </PromptInputModelSelectContent>
-                </PromptInputModelSelect>
+
+                <PromptInputSpeechButton />
+                {messages.length > 1 && (
+                  <PromptInputButton onClick={handleClear} variant={"ghost"}>
+                    <TrashIcon size={16} />
+                    <span>Clear</span>
+                  </PromptInputButton>
+                )}
               </PromptInputTools>
               <PromptInputSubmit
                 disabled={!(input || status)}
                 status={status}
+                variant={"ghost"}
               />
             </PromptInputFooter>
           </PromptInput>
