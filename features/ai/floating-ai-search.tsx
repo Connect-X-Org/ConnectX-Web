@@ -13,7 +13,6 @@ import {
   ArrowUpIcon,
   CopyIcon,
   GlobeIcon,
-  InfoIcon,
   MaximizeIcon,
   RefreshCcwIcon,
   SearchIcon,
@@ -75,11 +74,6 @@ import {
 } from "@/components/ai-elements/sources";
 import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
 import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Greeting } from "./greeting";
@@ -140,7 +134,7 @@ function SearchAIInput() {
         <Suggestions className="mb-2">
           {suggestions.map((suggestion) => (
             <Suggestion
-              className="bg-background/80"
+              // className="bg-background/80"
               key={suggestion}
               onClick={handleSuggestionClick}
               suggestion={suggestion}
@@ -150,7 +144,7 @@ function SearchAIInput() {
       )}
       <div
         className={cn(
-          "relative m-[1px] flex flex-col rounded-lg border border-fd-border bg-fd-background shadow-2xl shadow-fd-background",
+          // "relative m-[1px] flex flex-col rounded-lg border border-fd-border bg-fd-background shadow-2xl shadow-fd-background",
           isLoading ? "opacity-50" : ""
         )}
       >
@@ -217,43 +211,6 @@ function SearchAIInput() {
             </PromptInputSubmit>
           </PromptInputFooter>
         </PromptInput>
-
-        {showSuggestions && (
-          <div className="relative flex items-center gap-1 border-t bg-fd-accent/40 px-4 py-2 text-fd-muted-foreground text-xs">
-            <div className="flex flex-1 items-center gap-1">
-              Powered by{" "}
-              <Link
-                className="text-fd-primary hover:text-fd-primary/80 hover:underline"
-                href="https://rathon-rw.com"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Rathon
-              </Link>
-              <span className="hidden sm:inline">
-                AI can be inaccurate, please verify the information.
-              </span>
-            </div>
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  aria-label="Show information"
-                  className="rounded transition-colors hover:bg-fd-accent/50 sm:hidden"
-                  type="button"
-                >
-                  <InfoIcon className="size-3.5" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent
-                align="end"
-                className="w-auto max-w-44 text-pretty p-2 text-xs"
-                side="top"
-              >
-                AI can be inaccurate, please verify the information.
-              </PopoverContent>
-            </Popover>
-          </div>
-        )}
       </div>
     </>
   );
@@ -377,7 +334,7 @@ export function AISearchTrigger() {
         <Presence present={open}>
           <div
             className={cn(
-              "fixed inset-0 z-30 flex flex-col items-center bg-fd-background/80 backdrop-blur-xl",
+              "fixed inset-0 z-30 flex flex-col items-center bg-background",
               isMobile
                 ? "p-4 pb-40"
                 : "right-(--removed-body-scroll-bar-size,0) p-2 pb-[8.375rem]",
@@ -392,7 +349,7 @@ export function AISearchTrigger() {
           >
             <div
               className={cn(
-                "sticky top-0 flex items-center gap-2 py-2",
+                "sticky top-0 flex items-center gap-2",
                 isMobile ? "w-full" : "w-[min(800px,90vw)]"
               )}
             >
@@ -427,11 +384,11 @@ export function AISearchTrigger() {
                   : "w-[min(800px,90vw)] py-4 pr-2"
               )}
               messageCount={chat.messages.length}
-              style={{
-                maskImage: isMobile
-                  ? "linear-gradient(to bottom, transparent, white 2rem, white calc(100% - 12rem), transparent 100%)"
-                  : "linear-gradient(to bottom, transparent, white 4rem, white calc(100% - 2rem), transparent 100%)",
-              }}
+              // style={{
+              //   maskImage: isMobile
+              //     ? "linear-gradient(to bottom, transparent, white 2rem, white calc(100% - 12rem), transparent 100%)"
+              //     : "linear-gradient(to bottom, transparent, white 4rem, white calc(100% - 2rem), transparent 100%)",
+              // }}
             >
               <Conversation className="flex flex-col gap-4">
                 <ConversationContent>
@@ -597,15 +554,15 @@ export function AISearchTrigger() {
         </Presence>
         <div
           className={cn(
-            "-translate-x-1/2 fixed z-50 bg-transparent shadow-xl transition-[width,height] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+            "-translate-x-1/2 fixed z-50 bg-transparent transition-[width,height] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
             isMobile ? "bottom-4" : "bottom-4",
             open
               ? isMobile
-                ? "h-auto w-[calc(100vw-2rem)] overflow-visible bg-fd-accent/30"
-                : "h-auto w-[min(800px,90vw)] overflow-visible bg-fd-accent/30"
+                ? "h-auto w-[calc(100vw-2rem)] overflow-visible"
+                : "h-auto w-[min(800px,90vw)] overflow-visible"
               : isMobile
-                ? "h-9 w-32 overflow-hidden rounded-2xl bg-fd-secondary text-fd-secondary-foreground shadow-fd-background lg:h-12"
-                : "h-10 w-40 overflow-hidden rounded-2xl bg-fd-secondary text-fd-secondary-foreground shadow-fd-background"
+                ? "h-9 w-32 overflow-hidden rounded-2xl text-fd-secondary-foreground lg:h-12"
+                : "h-10 w-40 overflow-hidden rounded-2xl text-fd-secondary-foreground"
           )}
           style={{
             left: "calc(50% - var(--removed-body-scroll-bar-size,0px)/2)",
