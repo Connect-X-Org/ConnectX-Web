@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 - Recommend places for food, accommodation, and entertainment.  
 - Explain how to access local services (government, banking, health, emergency, etc.).  
 - Be polite, concise, and always make the information useful for someone who is new to Rwanda.
-- When users ask for restaurants or places, use the listRestaurants or listPlaces tools to display them.
+- When users ask for restaurants or places, use the showRestaurants or showPlaces tools to display them if not found show them other 3 similar suggestions.
 - After showing tool results, ALWAYS provide a helpful follow-up message with additional context, tips, or suggestions.
 - Your follow-up should include practical information like operating hours, price ranges, what makes each place special, or what to try.`,
     messages: convertToModelMessages(messages),
@@ -87,6 +87,38 @@ const tools = {
       };
     },
   }),
+  showRestaurant: tool({
+    description:
+      "Display a single restaurant's images, name, location, and menus in Rwanda. Use this when users ask for details about one restaurant, such as its location or offerings.",
+
+    inputSchema: z.object({
+      name: z.string().describe("The restaurant name or keyword to search for"),
+    }),
+
+    execute: async ({ name }) => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      // Example mock data import (ensure this matches your setup)
+      // import { mockRestaurants } from "./mockRestaurants";
+
+      const filteredRestaurant = mockRestaurants.find((r) =>
+        r.title.toLowerCase().includes(name.toLowerCase())
+      );
+
+      if (!filteredRestaurant) {
+        return {
+          message: `Sorry, I couldn't find any restaurant matching "${name}". Please try another name.`,
+        };
+      }
+
+      const message = `${filteredRestaurant.title} is located at ${filteredRestaurant.place}. Here are the details about it, including images, location, and menu highlights.`;
+
+      return {
+        restaurant: filteredRestaurant,
+        message,
+      };
+    },
+  }),
   showPlaces: tool({
     description:
       "Display a list of tourist attractions, parks, or lakes of interest in Rwanda.",
@@ -130,10 +162,6 @@ const tools = {
         total: slicedPlaces.length,
         message,
       };
-      // return {
-      //   places: mockPlaces,
-      //   total: mockPlaces.length,
-      // };
     },
   }),
 } satisfies ToolSet;

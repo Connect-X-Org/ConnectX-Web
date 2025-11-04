@@ -17,7 +17,7 @@ export default function ChatRestCards({
     return <ChatRestCardsCarousel restaurants={restaurants} />;
   }
   return (
-    <div className="grid grid-cols-1 gap-4 place-self-start md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid w-full grid-cols-1 gap-4 place-self-start md:grid-cols-2 lg:grid-cols-3">
       {restaurants.map((r) => (
         <ChatRestaurantCard key={r.id} restaurant={r} />
       ))}
@@ -49,7 +49,7 @@ export function ChatRestCardsCarousel({
             </CarouselNext>
           </div>
         </div>
-        <CarouselContent className="mt-2 cursor-grab active:cursor-grabbing">
+        <CarouselContent className="mt-2 w-full cursor-grab active:cursor-grabbing">
           {restaurants.map((r) => (
             <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" key={r.id}>
               <ChatRestaurantCard restaurant={r} />

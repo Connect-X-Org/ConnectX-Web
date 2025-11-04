@@ -54,11 +54,14 @@ import {
   SourcesTrigger,
 } from "@/components/ai-elements/sources";
 import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
+import { mockRestaurants } from "@/config/ai-data";
+import { restaurants } from "@/config/data";
 import { cn } from "@/lib/utils";
 import { Greeting } from "./greeting";
 import { suggestions } from "./suggestions";
 import ChatPlaceCards from "./tools/chat-place-cards";
 import ChatRestCards from "./tools/chat-rest-cards";
+import SingleRestaurant from "./tools/single-restaurant";
 
 const models = [
   {
@@ -112,7 +115,8 @@ export default function ChatSection({ className }: { className?: string }) {
       <div className="flex h-full flex-col">
         <Conversation className="h-full">
           <ConversationContent>
-            {messages.length === 0 && <Greeting />}
+            {/* {messages.length === 0 && <Greeting />} */}
+            {/* <SingleRestaurant restaurant={mockRestaurants[0]} /> */}
 
             {messages.map((message) => (
               <div key={message.id}>
@@ -190,6 +194,22 @@ export default function ChatSection({ className }: { className?: string }) {
                             {part.output?.restaurants && (
                               <ChatRestCards
                                 restaurants={part.output.restaurants}
+                              />
+                            )}
+                          </Message>
+                        </Fragment>
+                      );
+                    case "tool-showRestaurant":
+                      return (
+                        <Fragment key={`${message.id}-${i}`}>
+                          <Message
+                            className="flex flex-col"
+                            from={message.role}
+                          >
+                            <Response>{part.output?.message}</Response>
+                            {part.output?.restaurant && (
+                              <SingleRestaurant
+                                restaurant={part.output.restaurant}
                               />
                             )}
                           </Message>

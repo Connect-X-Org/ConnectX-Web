@@ -11,12 +11,20 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-export function Cart({ isAddToCart = false }: { isAddToCart?: boolean }) {
+export function Cart({
+  isAddToCart = false,
+  inChat = false,
+}: {
+  isAddToCart?: boolean;
+  inChat?: boolean;
+}) {
   return (
     <Sheet>
       <SheetTrigger asChild>
         {isAddToCart ? (
           <Button className="w-fit">Add to Cart</Button>
+        ) : inChat ? (
+          <Button variant={"link"}>Add to cart</Button>
         ) : (
           <Button
             className="group rounded-full"
