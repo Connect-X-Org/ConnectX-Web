@@ -11,7 +11,7 @@ import {
 } from "ai";
 import z from "zod";
 import { mockRestaurants } from "@/config/ai-data";
-import { places } from "@/config/data";
+import { houses, places } from "@/config/data";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -160,6 +160,72 @@ const tools = {
         query,
         location,
         total: slicedPlaces.length,
+        message,
+      };
+    },
+  }),
+  showHouses: tool({
+    description:
+      "Display a list of houses or places to stay in Rwanda. Use this when users ask for accommodation options or where to stay.",
+
+    inputSchema: z.object({
+      query: z
+        .string()
+        .optional()
+        .describe(
+          "Keyword or phrase to search for (e.g., 'luxury', 'villa', 'beach')"
+        ),
+      location: z
+        .string()
+        .optional()
+        .describe("Specific location in Rwanda (e.g., 'Kigali', 'Musanze')"),
+      limit: z
+        .number()
+        .int()
+        .positive()
+        .optional()
+        .default(6)
+        .describe("Number of houses to display"),
+    }),
+
+    execute: async ({ query, location, limit }) => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      // Assume houses is your mock or database array
+      // const houses = [...];
+
+      let filteredHouses = houses;
+
+      // Filter by location
+      if (location) {
+        filteredHouses = filteredHouses.filter((h) =>
+          h.place.some((p) => p.toLowerCase().includes(location.toLowerCase()))
+        );
+      }
+
+      // Filter by query (title or description)
+      if (query) {
+        filteredHouses = filteredHouses.filter(
+          (h) =>
+            h.title.toLowerCase().includes(query.toLowerCase()) ||
+            h.description.toLowerCase().includes(query.toLowerCase())
+        );
+      }
+
+      // Limit results
+      const slicedHouses = filteredHouses.slice(0, limit);
+
+      // Message generation
+      const locationText = location ? ` in ${location}` : " in Rwanda";
+      const message = `I found ${slicedHouses.length} place${
+        slicedHouses.length !== 1 ? "s" : ""
+      }${locationText}. Here are my recommendations:`;
+
+      return {
+        houses: slicedHouses,
+        query,
+        location,
+        total: slicedHouses.length,
         message,
       };
     },

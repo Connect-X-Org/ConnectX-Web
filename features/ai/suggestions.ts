@@ -1,6 +1,6 @@
 export const suggestions = [
   "Find the first ten places I can visit in the country",
-  "Book my hotel room",
+  "Best place I can stay at ?",
   "Show popular restaurants in Rwanda",
   "Find local guided tours",
   "Check the weather forecast",
