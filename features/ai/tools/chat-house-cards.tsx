@@ -13,7 +13,7 @@ export default function ChatHouseCards({ houses }: { houses: THouse[] }) {
     return <ChatHouseCardsCarousel houses={houses} />;
   }
   return (
-    <div className="grid w-full grid-cols-1 gap-4 place-self-start md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid w-full grid-cols-1 gap-4 gap-y-5 place-self-start md:grid-cols-2 lg:grid-cols-3">
       {houses.map((h) => (
         <ChatHouseCard house={h} key={h.title} />
       ))}

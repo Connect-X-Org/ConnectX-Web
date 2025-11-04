@@ -377,7 +377,7 @@ export function AISearchTrigger() {
         <Presence present={open}>
           <div
             className={cn(
-              "fixed inset-0 z-30 flex flex-col items-center bg-fd-background/80 backdrop-blur-sm",
+              "fixed inset-0 z-30 flex flex-col items-center bg-fd-background/80 backdrop-blur-xl",
               isMobile
                 ? "p-4 pb-40"
                 : "right-(--removed-body-scroll-bar-size,0) p-2 pb-[8.375rem]",

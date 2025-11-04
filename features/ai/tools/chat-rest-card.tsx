@@ -14,23 +14,24 @@ export default function ChatRestaurantCard({
   return (
     <Link
       className={cn(
-        "group col-span-2 transition-all duration-300 ease-in hover:scale-105 lg:col-span-1",
+        "group transition-all duration-300 ease-in hover:scale-105",
         className
       )}
       href={`/restaurants/${restaurant.slug}`}
       key={restaurant.id}
       target="_blank"
     >
-      <div className="relative overflow-hidden rounded-sm">
-        <AspectRatio className="bg-muted" ratio={16 / 9}>
-          <Image
-            alt={restaurant.title}
-            className="h-full w-full rounded-sm object-cover duration-300 ease-in hover:scale-105"
-            fill
-            src={restaurant.src}
-          />
-        </AspectRatio>
-      </div>
+      <AspectRatio
+        className="overflow-hidden rounded-sm bg-muted"
+        ratio={16 / 9}
+      >
+        <Image
+          alt={restaurant.title}
+          className="aspect-video h-full w-full rounded-sm object-cover duration-300 ease-in hover:scale-105"
+          fill
+          src={restaurant.src}
+        />
+      </AspectRatio>
 
       <div className="mt-1 flex flex-col gap-1">
         <div className="relative line-clamp-1 w-fit text-lg tracking-tight">

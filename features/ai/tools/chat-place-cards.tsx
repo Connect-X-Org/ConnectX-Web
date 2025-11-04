@@ -13,7 +13,7 @@ export default function ChatPlaceCards({ places }: { places: TPlace[] }) {
     return <ChatPlaceCardsCarousel places={places} />;
   }
   return (
-    <div className="grid w-full grid-cols-1 gap-4 place-self-start md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid w-full grid-cols-1 gap-4 gap-y-5 place-self-start md:grid-cols-2 lg:grid-cols-3">
       {places.map((p) => (
         <ChatPlaceCard key={p.id} place={p} />
       ))}
