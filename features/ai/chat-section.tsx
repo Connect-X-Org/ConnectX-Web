@@ -2,6 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import {
+  ArrowUpIcon,
   CopyIcon,
   GlobeIcon,
   RefreshCcwIcon,
@@ -312,10 +313,13 @@ export default function ChatSection({ className }: { className?: string }) {
                 )}
               </PromptInputTools>
               <PromptInputSubmit
-                disabled={!(input || status)}
+                className="size-8 rounded-full bg-primary text-primary-foreground transition-colors duration-200 hover:bg-primary/90 hover:text-primary-foreground/90 disabled:bg-muted disabled:text-muted-foreground"
+                disabled={!input.trim()}
                 status={status}
                 variant={"ghost"}
-              />
+              >
+                <ArrowUpIcon size={14} />
+              </PromptInputSubmit>
             </PromptInputFooter>
           </PromptInput>
         </div>

@@ -10,6 +10,7 @@ import { type UseChatHelpers, useChat } from "@ai-sdk/react";
 import { Presence } from "@radix-ui/react-presence";
 import { DefaultChatTransport } from "ai";
 import {
+  ArrowUpIcon,
   CopyIcon,
   GlobeIcon,
   InfoIcon,
@@ -139,6 +140,7 @@ function SearchAIInput() {
         <Suggestions className="mb-2">
           {suggestions.map((suggestion) => (
             <Suggestion
+              className="bg-background/80"
               key={suggestion}
               onClick={handleSuggestionClick}
               suggestion={suggestion}
@@ -206,10 +208,13 @@ function SearchAIInput() {
             </PromptInputTools>
 
             <PromptInputSubmit
-              disabled={input.length === 0 || !status}
+              className="size-8 rounded-full bg-primary text-primary-foreground transition-colors duration-200 hover:bg-primary/90 hover:text-primary-foreground/90 disabled:bg-muted disabled:text-muted-foreground"
+              disabled={!input.trim()}
               status={status}
-              variant={"secondary"}
-            />
+              variant={"ghost"}
+            >
+              <ArrowUpIcon size={14} />
+            </PromptInputSubmit>
           </PromptInputFooter>
         </PromptInput>
 
