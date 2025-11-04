@@ -82,6 +82,7 @@ export type TPlace = {
   title: string;
   slug: string;
   description: string;
+  type: "park" | "lake" | "museum" | "attraction";
 };
 
 export type Tjob = {
@@ -113,4 +114,14 @@ export type TReview = {
   image: string;
   name: string;
   location: string;
+};
+
+export type TmockRestaurant = {
+  id: string;
+  title: string;
+  slug: string;
+  place: string;
+  src: string;
+  description: string;
+  cuisine: string;
 };

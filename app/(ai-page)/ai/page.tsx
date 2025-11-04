@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import ChatSection from "@/features/ay/chat-section";
+import ChatSection from "@/features/ai/chat-section";
 export const metadata: Metadata = {
   title: "Ai",
 };

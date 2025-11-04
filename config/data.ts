@@ -442,6 +442,7 @@ export const places: TPlace[] = [
     slug: "volcanoes-national-park",
     description:
       "Home to the majestic mountain gorillas, Volcanoes National Park offers breathtaking hikes through misty forests, volcanic peaks, and unforgettable encounters with Rwanda’s most iconic wildlife.",
+    type: "park",
   },
   {
     id: 2,
@@ -452,6 +453,7 @@ export const places: TPlace[] = [
     slug: "nyungwe-forest-national-park",
     description:
       "Step into one of Africa’s oldest rainforests, rich with biodiversity, stunning waterfalls, and the world-famous canopy walk, where adventure meets tranquility above the treetops.",
+    type: "park",
   },
   {
     id: 3,
@@ -462,6 +464,7 @@ export const places: TPlace[] = [
     slug: "lake-kivu",
     description:
       "Relax on the sandy shores of Lake Kivu, a scenic paradise with crystal-clear waters, stunning sunsets, and endless opportunities for boat rides, swimming, and lakeside dining.",
+    type: "lake",
   },
   {
     id: 4,
@@ -472,6 +475,7 @@ export const places: TPlace[] = [
     slug: "akagera-national-park",
     description:
       "Discover Rwanda’s safari gem, where rolling savannas host the Big Five — lions, elephants, buffalo, rhinos, and leopards — alongside hippos and countless bird species in a true African wilderness.",
+    type: "park",
   },
   {
     id: 5,
@@ -482,6 +486,7 @@ export const places: TPlace[] = [
     slug: "nyanza",
     description:
       "Home to the King's Palace — a reconstruction of the traditional royal residence, a beautifully crafted thatched dwelling shaped like a beehive.",
+    type: "museum",
   },
   {
     id: 6,
@@ -492,6 +497,7 @@ export const places: TPlace[] = [
     slug: "rubavu",
     description:
       "A waterfront town on the shores of Lake Kivu, with red sandy beaches, warm clean water, and an easygoing tropical character.",
+    type: "attraction",
   },
 ];
 

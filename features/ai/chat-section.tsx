@@ -10,6 +10,7 @@ import {
   ThumbsUpIcon,
 } from "lucide-react";
 import { Fragment, useState } from "react";
+import type { ChatMessage } from "@/app/api/chat/route";
 import { Action, Actions } from "@/components/ai-elements/actions";
 import {
   Conversation,
@@ -54,8 +55,10 @@ import {
 } from "@/components/ai-elements/sources";
 import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
 import { cn } from "@/lib/utils";
-import { Greeting } from "../ai/greeting";
-import { suggestions } from "../ai/suggestions";
+import { Greeting } from "./greeting";
+import { suggestions } from "./suggestions";
+import ChatPlaceCards from "./tools/chat-place-cards";
+import ChatRestCards from "./tools/chat-rest-cards";
 
 const models = [
   {
@@ -72,7 +75,7 @@ export default function ChatSection({ className }: { className?: string }) {
   const [input, setInput] = useState("");
   const [model, setModel] = useState<string>(models[0].value);
   const [webSearch, setWebSearch] = useState(false);
-  const { messages, sendMessage, status, regenerate } = useChat();
+  const { messages, sendMessage, status, regenerate } = useChat<ChatMessage>();
 
   const handleSubmit = (message: PromptInputMessage) => {
     const hasText = Boolean(message.text);
@@ -110,6 +113,7 @@ export default function ChatSection({ className }: { className?: string }) {
         <Conversation className="h-full">
           <ConversationContent>
             {messages.length === 0 && <Greeting />}
+
             {messages.map((message) => (
               <div key={message.id}>
                 {message.role === "assistant" &&
@@ -142,7 +146,7 @@ export default function ChatSection({ className }: { className?: string }) {
                       return (
                         <Fragment key={`${message.id}-${i}`}>
                           <Message from={message.role}>
-                            <MessageContent>
+                            <MessageContent variant={"flat"}>
                               <Response>{part.text}</Response>
                             </MessageContent>
                           </Message>
@@ -152,16 +156,16 @@ export default function ChatSection({ className }: { className?: string }) {
                                 label="Retry"
                                 onClick={() => regenerate()}
                               >
-                                <RefreshCcwIcon className="size-3" />
+                                <RefreshCcwIcon className="size-4" />
                               </Action>
                               <Action label="Like">
-                                <ThumbsUpIcon className="size-3" />
+                                <ThumbsUpIcon className="size-4" />
                               </Action>
                               <Action label="Dislike">
-                                <ThumbsDownIcon className="size-3" />
+                                <ThumbsDownIcon className="size-4" />
                               </Action>
                               <Action label="Share">
-                                <ShareIcon className="size-3" />
+                                <ShareIcon className="size-4" />
                               </Action>
                               <Action
                                 label="Copy"
@@ -169,10 +173,40 @@ export default function ChatSection({ className }: { className?: string }) {
                                   navigator.clipboard.writeText(part.text)
                                 }
                               >
-                                <CopyIcon className="size-3" />
+                                <CopyIcon className="size-4" />
                               </Action>
                             </Actions>
                           )}
+                        </Fragment>
+                      );
+                    case "tool-showRestaurants":
+                      return (
+                        <Fragment key={`${message.id}-${i}`}>
+                          <Message
+                            className="flex flex-col"
+                            from={message.role}
+                          >
+                            <Response>{part.output?.message}</Response>
+                            {part.output?.restaurants && (
+                              <ChatRestCards
+                                restaurants={part.output.restaurants}
+                              />
+                            )}
+                          </Message>
+                        </Fragment>
+                      );
+                    case "tool-showPlaces":
+                      return (
+                        <Fragment key={`${message.id}-${i}`}>
+                          <Message
+                            className="flex flex-col"
+                            from={message.role}
+                          >
+                            <Response>{part.output?.message}</Response>
+                            {part.output?.places && (
+                              <ChatPlaceCards places={part.output.places} />
+                            )}
+                          </Message>
                         </Fragment>
                       );
                     case "reasoning":
@@ -196,6 +230,7 @@ export default function ChatSection({ className }: { className?: string }) {
                 })}
               </div>
             ))}
+            {/* <AiRestaurantsGrid restaurants={restaurants} /> */}
             {status === "submitted" && <Loader />}
           </ConversationContent>
           <ConversationScrollButton />
