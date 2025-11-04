@@ -3,13 +3,7 @@ import { BedDoubleIcon, UsersIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
-import { CarouselDots } from "@/features/web/_shared/carousel-dots";
 import { cn } from "@/lib/utils";
 import type { THouse } from "@/types";
 
@@ -21,43 +15,27 @@ export default function ChatHouseCard({
   className?: string;
 }) {
   return (
-    <div className={cn("group col-span-2 lg:col-span-1", className)}>
-      <div className="group relative overflow-hidden">
-        <Carousel
-          opts={{
-            loop: true,
-            dragFree: true,
-          }}
-        >
-          <CarouselContent>
-            {[house.src, ...house.otherImages].map((image) => (
-              <CarouselItem className="bg-muted" key={image}>
-                <Link href={`/housing/${house.slug}`} target="_blank">
-                  <AspectRatio ratio={16 / 9}>
-                    <Image
-                      alt={house.title}
-                      className="h-full w-full object-cover"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      src={image}
-                    />
-                  </AspectRatio>
-                </Link>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-
-          {/* Dots under carousel */}
-          <div className="-translate-x-1/2 absolute bottom-2 left-1/2">
-            <CarouselDots />
-          </div>
-        </Carousel>
-      </div>
-      <Link
-        className="mt-2 flex flex-col gap-2"
-        href={`/housing/${house.slug}`}
-        target="_blank"
+    <Link
+      className={cn(
+        "group col-span-2 transition-all duration-300 ease-in hover:scale-105 lg:col-span-1",
+        className
+      )}
+      href={`/housing/${house.slug}`}
+      target="_blank"
+    >
+      <AspectRatio
+        className="overflow-hidden rounded-sm bg-muted"
+        ratio={16 / 9}
       >
+        <Image
+          alt={house.title}
+          className="h-full w-full rounded-sm object-cover duration-300 ease-in hover:scale-105"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          src={house.src}
+        />
+      </AspectRatio>
+      <div className="mt-2 flex flex-col gap-2">
         <div className="flex flex-col gap-1">
           <p className="text-muted-foreground text-xs uppercase">
             {house.place.join(", ")}
@@ -86,7 +64,7 @@ export default function ChatHouseCard({
             <span>14</span>
           </div>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }

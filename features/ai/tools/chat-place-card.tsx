@@ -13,7 +13,10 @@ export default function ChatPlaceCard({
 }) {
   return (
     <Link
-      className={cn("group col-span-2 lg:col-span-1", className)}
+      className={cn(
+        "group col-span-2 transition-all duration-300 ease-in hover:scale-105 lg:col-span-1",
+        className
+      )}
       href={`/tourism/${place.slug}`}
       key={place.id}
       target="_blank"
