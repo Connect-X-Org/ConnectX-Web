@@ -350,7 +350,7 @@ export function AISearchTrigger() {
       api: "/api/chat",
     }),
   });
-  const { messages, status } = chat;
+  const { messages, status, regenerate } = chat;
   const onKeyPress = (e: KeyboardEvent) => {
     if (e.key === "Escape" && open) {
       setOpen(false);
