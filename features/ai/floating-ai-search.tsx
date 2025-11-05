@@ -384,11 +384,6 @@ export function AISearchTrigger() {
                   : "w-[min(800px,90vw)] py-4 pr-2"
               )}
               messageCount={chat.messages.length}
-              // style={{
-              //   maskImage: isMobile
-              //     ? "linear-gradient(to bottom, transparent, white 2rem, white calc(100% - 12rem), transparent 100%)"
-              //     : "linear-gradient(to bottom, transparent, white 4rem, white calc(100% - 2rem), transparent 100%)",
-              // }}
             >
               <Conversation className="flex flex-col gap-4">
                 <ConversationContent>

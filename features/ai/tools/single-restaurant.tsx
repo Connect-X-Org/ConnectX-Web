@@ -57,7 +57,7 @@ export default function SingleRestaurant({
   );
 }
 
-function MenuItem({ title, price }: { title: string; price: number }) {
+export function MenuItem({ title, price }: { title: string; price: number }) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex cursor-pointer items-center gap-2 text-primary/90 hover:text-primary">

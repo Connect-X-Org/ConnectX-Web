@@ -1,10 +1,12 @@
 import {
+  AirVentIcon,
   Apple,
   BadgeCheck,
   Beef,
   Beer,
   BookOpenIcon,
   Briefcase,
+  BriefcaseMedicalIcon,
   Building,
   Building2,
   Cake,
@@ -17,6 +19,7 @@ import {
   DumbbellIcon,
   Factory,
   FerrisWheel,
+  FireExtinguisherIcon,
   Fish,
   Gift,
   Globe2Icon,
@@ -59,6 +62,7 @@ import {
   Sun,
   TentTree,
   Theater,
+  TheaterIcon,
   TicketIcon,
   TicketsIcon,
   Train,
@@ -71,6 +75,8 @@ import {
   Utensils,
   WalletIcon,
   Waves,
+  WifiIcon,
+  WindIcon,
   WrenchIcon,
 } from "lucide-react";
 import type {
@@ -849,7 +855,7 @@ export const menu = {
     {
       id: 1,
       image: "/restaurant/image-1.avif",
-      title: "Grilled Rwandan Beef Steak",
+      title: "Grilled Beef Steak",
       description:
         "Tender Rwandan beef steak grilled to perfection, served with seasonal vegetables.",
       price: 15.99,
@@ -1320,5 +1326,32 @@ export const events: TEvent[] = [
     href: "/",
     description:
       "Discover sustainable solutions and eco-friendly technologies from local and global innovators.",
+  },
+];
+
+export const amenities = [
+  {
+    icon: WifiIcon,
+    title: "Wifi",
+  },
+  {
+    icon: FireExtinguisherIcon,
+    title: "Fire Extinguisher",
+  },
+  {
+    icon: TheaterIcon,
+    title: "MovieTheater",
+  },
+  {
+    icon: AirVentIcon,
+    title: "Air Conditioner",
+  },
+  {
+    icon: WindIcon,
+    title: "Smoke Detector",
+  },
+  {
+    icon: BriefcaseMedicalIcon,
+    title: "First Aid Kit",
   },
 ];
