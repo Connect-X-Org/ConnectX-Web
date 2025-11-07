@@ -90,7 +90,7 @@ export default async function Page({
   }
   return (
     <div className="container py-16 pt-10">
-      <div className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-12 gap-4 lg:px-4 xl:max-w-[90rem] xl:gap-10 2xl:px-0">
+      <div className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-12 gap-4 lg:px-4 xl:max-w-[99rem] xl:gap-10 2xl:px-0">
         <div className="relative col-span-12 flex flex-col gap-4 md:col-span-8">
           <Carousel
             opts={{
@@ -166,7 +166,7 @@ export default async function Page({
           </div>
         </div>
         <div className="sticky top-10 col-span-12 block h-fit md:col-span-4 2xl:col-span-3">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 xl:gap-6">
             <Card className="hidden lg:flex">
               <CardHeader>
                 <CardTitle className="text-lg lg:text-xl">

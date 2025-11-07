@@ -18,14 +18,19 @@ export default function HeaderNavs() {
     >
       <ScrollArea className="w-[100vw] overflow-hidden lg:w-full">
         <div className="mx-auto flex w-full items-center justify-center">
-          {navItems.map((item, index) => (
-            <NavItem
-              active={pathname === item.link}
-              id={index}
-              item={item}
-              key={item.label}
-            />
-          ))}
+          {navItems.map((item, index) => {
+            const isActive =
+              pathname === item.link || pathname.startsWith(`${item.link}/`);
+
+            return (
+              <NavItem
+                active={isActive}
+                id={index}
+                item={item}
+                key={item.label}
+              />
+            );
+          })}
         </div>
         <ScrollBar className="h-0 w-0" orientation="horizontal" />
       </ScrollArea>
@@ -38,14 +43,14 @@ export function ServicesHeaderNavs() {
 
   return (
     <div className="mx-auto flex w-full items-center justify-center">
-      {navItems.map((item, index) => (
-        <NavItem
-          active={pathname === item.link}
-          id={index}
-          item={item}
-          key={item.label}
-        />
-      ))}
+      {navItems.map((item, index) => {
+        const isActive =
+          pathname === item.link || pathname.startsWith(`${item.link}/`);
+
+        return (
+          <NavItem active={isActive} id={index} item={item} key={item.label} />
+        );
+      })}
     </div>
   );
 }
