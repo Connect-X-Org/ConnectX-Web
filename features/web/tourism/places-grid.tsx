@@ -22,14 +22,14 @@ export default function PlacesGrid({
   return (
     <div
       className={cn(
-        "relative grid w-full grid-cols-1 gap-4 gap-y-8 text-left md:grid-cols-2 lg:grid-cols-4",
+        "relative grid w-full grid-cols-1 gap-y-6 text-left md:grid-cols-2 lg:grid-cols-4",
         className
       )}
     >
       {slicedPlaces.map((place, i) => (
         <Link
           className={cn(
-            "group col-span-2 lg:col-span-1",
+            "group col-span-2 rounded-lg p-4 transition-all duration-300 ease-in hover:bg-muted lg:col-span-1",
             i === 0 && onHomepage && "lg:col-span-2",
             i === 1 && onHomepage && "lg:col-span-2"
           )}
@@ -37,10 +37,10 @@ export default function PlacesGrid({
           key={place.id}
         >
           <div className="relative overflow-hidden">
-            <AspectRatio className="rounded-none bg-muted" ratio={16 / 9}>
+            <AspectRatio className="rounded-lg bg-muted" ratio={16 / 9}>
               <Image
                 alt={place.title}
-                className="h-full w-full object-cover"
+                className="h-full w-full rounded-lg object-cover"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 src={place.src}
@@ -59,10 +59,9 @@ export default function PlacesGrid({
               {place.place}
             </p>
 
-            <div className="relative line-clamp-1 w-fit text-lg tracking-tight">
-              <span>{place.title}</span>
-              <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50" />
-            </div>
+            <p className="line-clamp-1 font-medium text-xl tracking-tight">
+              {place.title}
+            </p>
           </div>
           <div className="mt-2">
             <p className="line-clamp-2 text-[16px] text-primary/90 text-sm leading-6">

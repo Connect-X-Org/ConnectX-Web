@@ -21,25 +21,25 @@ export default function RestaurantsGrid({
   return (
     <div
       className={cn(
-        "relative grid w-full grid-cols-1 gap-4 gap-y-8 text-left md:grid-cols-2 lg:grid-cols-4",
+        "relative grid w-full grid-cols-1 gap-y-6 text-left md:grid-cols-2 lg:grid-cols-4",
         className
       )}
     >
       {slicedRestaurants.map((restaurant, i) => (
         <Link
           className={cn(
-            "group col-span-2 lg:col-span-1",
+            "group col-span-2 rounded-lg p-4 transition-all duration-300 ease-in hover:bg-muted lg:col-span-1",
             i === 0 && onHomepage && "lg:col-span-2",
             i === 1 && onHomepage && "lg:col-span-2"
           )}
           href={`/restaurants/${restaurant.slug}`}
           key={restaurant.id}
         >
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-lg">
             <AspectRatio className="rounded-lg bg-muted" ratio={16 / 9}>
               <Image
                 alt={restaurant.title}
-                className="h-full w-full object-cover duration-300 ease-in hover:scale-105"
+                className="h-full w-full rounded-lg object-cover duration-300 ease-in hover:scale-105"
                 fill
                 src={restaurant.src}
               />
@@ -56,10 +56,9 @@ export default function RestaurantsGrid({
             <p className="text-muted-foreground text-xs uppercase">
               {restaurant.place}
             </p>
-            <div className="relative line-clamp-1 w-fit text-lg tracking-tight">
-              <span>{restaurant.title}</span>
-              <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50" />
-            </div>
+            <p className="line-clamp-1 w-fit text-lg tracking-tight">
+              {restaurant.title}
+            </p>
           </div>
           <div className="mt-3">
             <p

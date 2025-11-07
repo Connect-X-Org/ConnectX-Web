@@ -28,12 +28,17 @@ export default function EventsGrid({
   return (
     <div
       className={cn(
-        "relative grid w-full grid-cols-1 gap-4 gap-y-8 text-left md:grid-cols-2 lg:grid-cols-4",
+        "relative grid w-full grid-cols-1 gap-y-6 text-left md:grid-cols-2 lg:grid-cols-4",
         className
       )}
     >
       {slicedEvents.map((event, i) => (
-        <div className={cn("group col-span-2 lg:col-span-1")} key={i}>
+        <div
+          className={cn(
+            "group col-span-2 rounded-lg p-4 transition-all duration-300 ease-in hover:bg-muted lg:col-span-1"
+          )}
+          key={i}
+        >
           <div className="group relative overflow-hidden">
             <Carousel
               opts={{
@@ -48,7 +53,7 @@ export default function EventsGrid({
                       <AspectRatio ratio={16 / 9}>
                         <Image
                           alt={event.title}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full rounded-lg object-cover"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           src={image}
@@ -83,10 +88,9 @@ export default function EventsGrid({
               <p className="text-muted-foreground text-xs uppercase">
                 {event.place.join(", ")}
               </p>
-              <div className="relative line-clamp-1 w-fit text-lg tracking-tight">
-                <span className="font-medium text-xl">{event.title}</span>
-                <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50" />
-              </div>
+              <p className="line-clamp-1 font-medium text-xl tracking-tight">
+                {event.title}
+              </p>
             </div>
             <div className="flex items-center gap-4 font-medium text-sm">
               <p>

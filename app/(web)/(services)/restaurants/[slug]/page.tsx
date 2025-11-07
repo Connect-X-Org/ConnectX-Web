@@ -59,7 +59,7 @@ export default async function Page({
     return notFound();
   }
   return (
-    <main className="bg-dashed">
+    <main className="bg-muted">
       <RestaurantHeroCarousel restaurant={restaurant} />
       <MenuSection />
       <RestaurantTestimonials />

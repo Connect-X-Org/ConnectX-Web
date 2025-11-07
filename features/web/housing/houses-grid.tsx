@@ -31,14 +31,14 @@ export default function HousesGrid({
   return (
     <div
       className={cn(
-        "relative grid w-full grid-cols-1 gap-4 gap-y-8 text-left md:grid-cols-2 lg:grid-cols-4",
+        "relative grid w-full grid-cols-1 gap-y-6 text-left md:grid-cols-2 lg:grid-cols-4",
         className
       )}
     >
       {slicedHouses.map((house, i) => (
         <div
           className={cn(
-            "group col-span-2 lg:col-span-1",
+            "group col-span-2 rounded-lg p-4 transition-all duration-300 ease-in hover:bg-muted lg:col-span-1",
             i === 0 && onHomepage && "lg:col-span-2",
             i === 1 && onHomepage && "lg:col-span-2"
           )}
@@ -53,12 +53,12 @@ export default function HousesGrid({
             >
               <CarouselContent>
                 {[house.src, ...house.otherImages].map((image) => (
-                  <CarouselItem className="bg-muted" key={image}>
+                  <CarouselItem className="rounded-lg bg-muted" key={image}>
                     <Link href={`/housing/${house.slug}`}>
                       <AspectRatio ratio={16 / 9}>
                         <Image
                           alt={house.title}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full rounded-lg object-cover"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           src={image}
@@ -93,12 +93,9 @@ export default function HousesGrid({
               <p className="text-muted-foreground text-xs uppercase">
                 {house.place.join(", ")}
               </p>
-              <div className="relative w-fit">
-                <span className="line-clamp-1 font-medium text-xl tracking-tight">
-                  {house.title}
-                </span>
-                <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50" />
-              </div>
+              <p className="line-clamp-1 font-medium text-xl tracking-tight">
+                {house.title}
+              </p>
             </div>
             <div className="mt-auto flex items-center gap-4 font-medium text-sm">
               <p>

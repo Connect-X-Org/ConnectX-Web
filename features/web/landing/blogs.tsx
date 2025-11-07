@@ -54,11 +54,11 @@ export default function Blogs() {
                 key={blog.id}
               >
                 <div key={blog.id}>
-                  <div className="relative overflow-hidden">
-                    <AspectRatio className="rounded-lg bg-muted" ratio={16 / 9}>
+                  <div className="relative overflow-hidden rounded-lg">
+                    <AspectRatio className="bg-muted" ratio={16 / 9}>
                       <Image
                         alt={blog.title}
-                        className="h-full w-full object-cover duration-300 ease-in hover:scale-105"
+                        className="h-full w-full rounded-lg object-cover duration-300 ease-in hover:scale-105"
                         fill
                         src={blog.src}
                       />
