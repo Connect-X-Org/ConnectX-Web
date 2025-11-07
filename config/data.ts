@@ -718,7 +718,8 @@ export const restaurants: TRestaurant[] = [
     slug: "repub-lounge",
     href: "#",
     description:
-      "Led by Chef Dieuveil Malonga, Meza Malonga offers a fine-dining journey that fuses Rwandan flavors with global culinary artistry. Each dish is carefully crafted to highlight African heritage, seasonal produce, and innovative techniques, making the restaurant one of Kigali’s most celebrated dining destinations. The space is intimate and creative, appealing to adventurous food lovers who want to explore Africa’s evolving gastronomy scene.",
+      "Led by Chef Dieuveil Malonga, Meza Malonga offers a fine-dining experience that blends Rwandan flavors with global creativity. Each dish celebrates African heritage and seasonal produce, making it one of Kigali’s most acclaimed dining destinations.",
+
     rating: 4,
     reviews: 100,
     // Overview data

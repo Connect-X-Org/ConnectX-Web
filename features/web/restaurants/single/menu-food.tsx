@@ -11,7 +11,7 @@ export default function MenuFood({ food }: { food: Food }) {
   return (
     <>
       <div key={food.id}>
-        <div className="flex items-center justify-between rounded-2xl transition-all duration-200 hover:bg-muted/50 md:p-2 md:px-4">
+        <div className="flex items-center justify-between rounded-2xl transition-all duration-200 md:p-2 md:px-4">
           <div className="flex items-center gap-2">
             <button
               className="relative size-20 overflow-hidden rounded-sm bg-muted md:size-28"

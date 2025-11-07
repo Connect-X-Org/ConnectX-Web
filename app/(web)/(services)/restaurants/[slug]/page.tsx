@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { restaurants } from "@/config/data";
-import RestaurantTabs from "@/features/web/restaurants/single/restaurant-tabs";
+import RestaurantContact from "@/features/web/restaurants/single/contact";
+import RestaurantHeroCarousel from "@/features/web/restaurants/single/hero-carousel";
+import MenuSection from "@/features/web/restaurants/single/menu-section";
+import RestaurantTestimonials from "@/features/web/restaurants/single/testimonials";
 
 export function generateStaticParams() {
   return restaurants.map((restaurant) => ({
@@ -55,5 +58,12 @@ export default async function Page({
   if (!restaurant) {
     return notFound();
   }
-  return <RestaurantTabs restaurant={restaurant} />;
+  return (
+    <main className="bg-dashed">
+      <RestaurantHeroCarousel restaurant={restaurant} />
+      <MenuSection />
+      <RestaurantTestimonials />
+      <RestaurantContact restaurant={restaurant} />
+    </main>
+  );
 }
