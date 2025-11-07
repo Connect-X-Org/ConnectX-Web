@@ -42,7 +42,7 @@ export function ServicesHeaderNavs() {
   const pathname = usePathname();
 
   return (
-    <div className="mx-auto flex w-full items-center justify-center">
+    <div className="mx-auto hidden w-full items-center justify-center lg:flex">
       {navItems.map((item, index) => {
         const isActive =
           pathname === item.link || pathname.startsWith(`${item.link}/`);

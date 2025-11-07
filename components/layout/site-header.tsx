@@ -1,6 +1,7 @@
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import AiTopSheet from "@/features/ai/ai-top-sheet";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 // import { Cart } from "./cart";
@@ -35,11 +36,19 @@ export default function SiteHeader({
 
           <div className="ml-auto flex items-center gap-2">
             <CommandMenu className="hidden" />
-            <Button className="rounded-full" variant={"ghost"}>
+            <AiTopSheet />
+            <Button className="hidden rounded-full lg:flex" variant={"ghost"}>
               <div className="flex items-center gap-2">
                 <PlusIcon />
-                <span className="hidden xl:block">Add your business</span>
+                <span>Add your business</span>
               </div>
+            </Button>
+            <Button
+              className="rounded-full lg:hidden"
+              size={"icon-sm"}
+              variant={"secondary"}
+            >
+              <PlusIcon />
             </Button>
             {/* <Cart /> */}
             <SignInTop />

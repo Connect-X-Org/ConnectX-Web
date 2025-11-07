@@ -21,7 +21,7 @@ export default function RestaurantsGrid({
   return (
     <div
       className={cn(
-        "relative grid w-full grid-cols-1 gap-y-6 text-left md:grid-cols-2 lg:grid-cols-4",
+        "relative grid w-full @3xl:grid-cols-3 @5xl:grid-cols-4 @md:grid-cols-2 grid-cols-1 gap-y-6 text-left",
         className
       )}
     >

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 export default function RestaurantsPage() {
   return (
-    <main className="relative">
+    <main className="@container relative">
       <ServiceFilters type="restaurants" />
       <RestaurantsLanding />
     </main>

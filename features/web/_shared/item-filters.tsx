@@ -5,7 +5,7 @@ import type { Tservices } from "@/types";
 
 export default function ItemFilters({ itemType }: { itemType: Tservices }) {
   return (
-    <div className="mx-auto w-full max-w-2xl pt-6 pb-2">
+    <div className="mx-auto w-full max-w-2xl px-4 pt-6 pb-2">
       <Form action={`/${itemType}`} className="relative w-full">
         <Input
           className="peer min-h-10 rounded-full border-0 bg-muted ps-9 lg:min-w-xs lg:pe-9 dark:border"

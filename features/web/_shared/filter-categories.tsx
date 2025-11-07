@@ -33,7 +33,7 @@ export default function FilterCategories({
     categories = ticketCategories;
   }
   return (
-    <div className="container flex w-full items-center justify-between gap-10">
+    <div className="container flex w-full items-center justify-between gap-3 lg:gap-10">
       <ScrollArea className="mx-auto min-w-[70vw]">
         <div className="flex gap-2 pt-4 pb-2">
           {categories.map((category) => {
