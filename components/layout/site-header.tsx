@@ -3,7 +3,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { Cart } from "./cart";
+// import { Cart } from "./cart";
 import { CommandMenu } from "./command-menu";
 import HeaderNavs, { ServicesHeaderNavs } from "./header-navs";
 import MobileNav from "./mobile-nav";
@@ -41,7 +41,7 @@ export default function SiteHeader({
                 <span className="hidden xl:block">Add your business</span>
               </div>
             </Button>
-            <Cart />
+            {/* <Cart /> */}
             <SignInTop />
           </div>
         </div>

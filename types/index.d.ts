@@ -106,6 +106,9 @@ export type Tjob = {
 export type TnavItem = {
   label: string;
   link: string;
+  icon: ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+  >;
   comingSoon?: boolean | undefined;
 };
 export type TReview = {

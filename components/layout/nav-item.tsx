@@ -13,6 +13,7 @@ export default function NavItem({
   active: boolean;
 }) {
   const [hovered, setHovered] = useState<number | null>(null);
+  const Icon = item.icon;
   return (
     <motion.div
       className={cn(
@@ -43,7 +44,10 @@ export default function NavItem({
             />
           )}
         </AnimatePresence>
-        <span className="relative z-10">{item.label}</span>
+        <div className="relative flex items-center gap-2">
+          <Icon className="relative z-10 size-4" />
+          <span className="relative z-10">{item.label}</span>
+        </div>
       </Link>
     </motion.div>
   );

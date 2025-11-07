@@ -38,6 +38,7 @@ import {
   LaptopIcon,
   LifeBuoy,
   ListIcon,
+  MapIcon,
   MapPin,
   Martini,
   Mic2Icon,
@@ -221,26 +222,37 @@ export const menuSections = [
   { label: "Company", items: company },
 ];
 
+import { Compass, HeartPulse } from "lucide-react";
+
 export const navItems: TnavItem[] = [
   {
     label: "Explore",
     link: "/",
-  },
-
-  {
-    label: "Services",
-    link: "/services",
+    icon: Compass,
   },
   {
-    label: "Company",
-    link: "/company",
-    // comingSoon: true,
+    label: "Restaurants",
+    link: "/restaurants",
+    icon: Utensils,
   },
   {
-    label: "Map",
-    link: "/map",
+    label: "Housing",
+    link: "/housing",
+    icon: Home,
+  },
+  {
+    label: "Tourism",
+    link: "/tourism",
+    icon: MapIcon,
+  },
+  {
+    label: "Healthcare",
+    link: "/health",
+    icon: HeartPulse,
+    comingSoon: true,
   },
 ];
+
 export const footerLinks = [
   {
     title: "Newsroom",
